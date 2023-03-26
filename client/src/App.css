@@ -260,13 +260,42 @@ body {
 
 .results h2 {
   margin-bottom: 10px;
+  /* margin-right: 50px; */
+}
+
+.res-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.res-header h2 {
+  margin-right: 50px;
 }
 
 .results-main {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 50px;
+  /* margin-top: 50px; */
+}
+
+.results-left {
+  /* background-color: green; */
+  width: 400px;
+  flex: 1;
+}
+
+.dough {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+}
+
+.results-right {
+  /* background-color: blueviolet; */
+  flex: 3;
+  margin-left: 20px;
 }
 
 .draggable {
@@ -324,4 +353,29 @@ body {
   gap: 8px;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.tallies {
+  display: flex;
+  gap: 60px;
+  justify-content: space-between;
+}
+
+.tallyjawn {
+  width: 200px;
+  min-width: 200px;
+  border: 2px solid #8f82fb;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.turnout {
+  margin-bottom: 40px;
+}
+
+.yesss {
+  background-color: #482ce1;
+  background-color: #ab23c5;
+  background-color: #da41c2;
+  background-color: #6161ab;
 }

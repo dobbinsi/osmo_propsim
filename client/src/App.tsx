@@ -17,7 +17,10 @@ import {
 
 import { Draggable } from "./components/Draggable";
 import { Droppable } from "./components/Droppable";
-import { validators, Validator } from "./validators";
+
+import { Chart as ChartJS, ArcElement, Title, Tooltip, Legend } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
+import DoughnutChart from "./components/DoughnutChart";
 
 function App() {
   // const [validators, setValidators] = useState([
@@ -165,6 +168,171 @@ function App() {
 
   const [vjawns, setVjawns] = React.useState([]);
 
+  const partChartData = {
+    labels: ["Yes", "No", "No With Veto", "Abstain"],
+    datasets: [
+      {
+        label: "# of Wallets",
+        data: [70, 10, 10, 10],
+        backgroundColor: ["#482ce1", "#5e19a0", "#da41c2", "#6161ab"],
+        // borderColor: ["#4b423f"],
+        // borderWidth: 1.5,
+      },
+    ],
+  };
+
+  const partChartOptions = {
+    responsive: true,
+    // layout: {
+    //   padding: {
+    //     bottom: 20,
+    //   },
+    // },
+    plugins: {
+      legend: {
+        display: false,
+        position: "bottom",
+        align: "start",
+        labels: {
+          font: {
+            size: 11,
+            family: "'Poppins', sans-serif",
+          },
+        },
+      },
+      title: {
+        display: false,
+      },
+    },
+  };
+
+  ChartJS.register(ArcElement, Title, Tooltip, Legend);
+
+  type Validator = {
+    id: string;
+    name: string;
+    logo: string;
+    power: string;
+    containerId: string;
+  };
+
+  type Validators = Validator[];
+
+  const validators: Validators = [
+    {
+      id: "1",
+      name: "flipside",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/c2fdefa03db4d6ef1872239955449e05_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "2",
+      name: "imperator",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/d85f442f668abaac037203356ee6d905_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "3",
+      name: "danku",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/42a43c92fd7896697eaf8157dad39505_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "4",
+      name: "frens",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/77f05c9f4479b689156a691b2640f305_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "5",
+      name: "mango",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/1c6f791ce6df2b7b14ea1d0447ab1c05_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "6",
+      name: "marinade",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/d006ff2692078b96b7d54ebfd6c84205_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "7",
+      name: "expressake",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/53b008f12f37e3ffa0dec3676d375a05_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "8",
+      name: "stakewithme",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/8c54cca4a597dd5dfdd9665d7ebdda05_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "9",
+      name: "lockandkey",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/c2fdefa03db4d6ef1872239955449e05_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "10",
+      name: "bullish stake",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/c2fdefa03db4d6ef1872239955449e05_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "11",
+      name: "bearish stake",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/c2fdefa03db4d6ef1872239955449e05_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "12",
+      name: "frenemies",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/c2fdefa03db4d6ef1872239955449e05_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "13",
+      name: "gorilla stqke",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/c2fdefa03db4d6ef1872239955449e05_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "14",
+      name: "sake stake",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/c2fdefa03db4d6ef1872239955449e05_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "15",
+      name: "birbman stakes",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/c2fdefa03db4d6ef1872239955449e05_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+    {
+      id: "16",
+      name: "osmongton",
+      logo: "https://s3.amazonaws.com/keybase_processed_uploads/c2fdefa03db4d6ef1872239955449e05_360_360.jpg",
+      power: "2.25%",
+      containerId: "ROOT",
+    },
+  ];
+
   const headers3 = {
     "Content-Type": "application/json",
     Origin: "https://wallet.keplr.app/",
@@ -176,6 +344,23 @@ function App() {
     data: any;
   }
 
+  interface TokensResponse {
+    // Define the response structure here, for example:
+    data: any;
+  }
+
+  // useEffect(() => {
+  //   axios
+  //     .get<TokensResponse>(
+  //       "https://lcd-osmosis.keplr.app/cosmos/staking/v1beta1/pool",
+  //       { headers: headers3 }
+  //     )
+  //     .then((res: AxiosResponse<TokensResponse>) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err: AxiosError) => console.log(err));
+  // }, []);
+
   // useEffect(() => {
   //   axios
   //     .get<ValidatorResponse>(
@@ -183,7 +368,7 @@ function App() {
   //       { headers: headers3 }
   //     )
   //     .then((res: AxiosResponse<ValidatorResponse>) => {
-  //       console.log(res);
+  //       console.log(res.data);
   //     })
   //     .catch((err: AxiosError) => console.log(err));
   // }, []);
@@ -282,23 +467,6 @@ function App() {
             </div>
             <div>
               <div className="category">
-                <h2>Abstain</h2>
-              </div>
-              <div className="abstain">
-                <Droppable id="containerAbs" className="droppable">
-                  {draggables
-                    //only render draggables with have a containerId of ROOT
-                    .filter(
-                      (draggable) => draggable.containerId === "containerAbs"
-                    )
-                    .map((draggable) => (
-                      <Draggable key={draggable.id} {...draggable} />
-                    ))}
-                </Droppable>
-              </div>
-            </div>
-            <div>
-              <div className="category">
                 <h2>No</h2>
               </div>
               <div className="no">
@@ -331,15 +499,65 @@ function App() {
                 </Droppable>
               </div>
             </div>
+            <div>
+              <div className="category">
+                <h2>Abstain</h2>
+              </div>
+              <div className="abstain">
+                <Droppable id="containerAbs" className="droppable">
+                  {draggables
+                    //only render draggables with have a containerId of ROOT
+                    .filter(
+                      (draggable) => draggable.containerId === "containerAbs"
+                    )
+                    .map((draggable) => (
+                      <Draggable key={draggable.id} {...draggable} />
+                    ))}
+                </Droppable>
+              </div>
+            </div>
           </div>
           <div className="results">
-            <h2>Results</h2>
+            <div className="res-header">
+              <div>
+                <h2>Results</h2>
+              </div>
+              <div>
+                <h2>PASSED</h2>
+              </div>
+            </div>
             <div className="results-main">
               <div className="results-left">
-                <h2>Current Turnout: 31.33%</h2>
+                <div className="dough">
+                  <DoughnutChart
+                    data={partChartData}
+                    options={partChartOptions}
+                  />
+                </div>
               </div>
               <div className="results-right">
-                <h2>Current Status: Pass</h2>
+                <div className="turnout">
+                  <h2>Turnout: "............"</h2>
+                  <h3>Quorum: "............" OSMO (20% of total stake)</h3>
+                </div>
+                <div className="tallies">
+                  <div className="tallyjawn">
+                    <h2>YES: ".........."</h2>
+                    <h3>104,669,699 OSMO</h3>
+                  </div>
+                  <div className="tallyjawn">
+                    <h2>NO: ".........."</h2>
+                    <h3>104,669,699 OSMO</h3>
+                  </div>
+                  <div className="tallyjawn">
+                    <h2>NWV: ".........."</h2>
+                    <h3>104,669,699 OSMO</h3>
+                  </div>
+                  <div className="tallyjawn">
+                    <h2>ABSTAIN: ".........."</h2>
+                    <h3>104,669,699 OSMO</h3>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
