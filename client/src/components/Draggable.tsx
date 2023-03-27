@@ -7,7 +7,7 @@ type DraggableProps = {
   styles?: React.CSSProperties;
   name?: string;
   logo?: string;
-  power?: string;
+  power: string;
 };
 
 export function Draggable(props: DraggableProps) {
@@ -23,6 +23,15 @@ export function Draggable(props: DraggableProps) {
     opacity: isDragging ? 0 : 1,
   };
 
+  const powerNumber = parseFloat(power);
+  const powerDecimal = (powerNumber / Math.pow(10, 6)).toLocaleString(
+    undefined,
+    {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }
+  );
+
   return (
     <div
       //This callback ref is important, it tells dnd-kit that this is a draggable component
@@ -37,11 +46,12 @@ export function Draggable(props: DraggableProps) {
       <div className="val-container">
         <div className="logo-box">
           <img src={logo} className="vlogo" alt="logo" />
-          <h2>{name}</h2>
+          <h4>{name}</h4>
         </div>
         <div className="vinfo">
           <div className="vinfo-power">
-            <h2>{power}</h2>
+            <h5>{powerDecimal}</h5>
+            <h5 className="osmolabel">OSMO</h5>
           </div>
         </div>
       </div>

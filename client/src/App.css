@@ -44,7 +44,7 @@ body {
   padding: 20px;
   background-color: #28274f;
   border-radius: 15px;
-  overflow: hidden;
+  overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -243,6 +243,10 @@ body {
   display: flex;
 }
 
+.osmolabel {
+  text-align: right;
+}
+
 .results {
   height: 300px;
   /* margin-top: 50px; */
@@ -296,6 +300,7 @@ body {
   /* background-color: blueviolet; */
   flex: 3;
   margin-left: 20px;
+  margin-right: 50px;
 }
 
 .draggable {
