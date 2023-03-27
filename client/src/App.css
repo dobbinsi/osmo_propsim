@@ -384,3 +384,8 @@ body {
   background-color: #da41c2;
   background-color: #6161ab;
 }
+
+.tttt {
+  display: flex;
+  justify-content: space-between;
+}

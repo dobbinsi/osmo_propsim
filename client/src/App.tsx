@@ -23,8 +23,14 @@ import { Doughnut } from "react-chartjs-2";
 import DoughnutChart from "./components/DoughnutChart";
 
 function App() {
-  const [bondedTokens, setBondedTokens] = React.useState({});
+  const [bondedTokens, setBondedTokens] = React.useState<string>();
   const [vJawns, setVjawns] = React.useState<ValidatorWithThumbnail[]>([]);
+  const [sumYes, setSumYes] = React.useState<string>();
+  const [sumNo, setSumNo] = React.useState<string>();
+  const [sumNwv, setSumNwv] = React.useState<string>();
+  const [sumAbs, setSumAbs] = React.useState<string>();
+  const [totalVotes, setTotalVotes] = React.useState<string>();
+  const [quorum, setQuorum] = React.useState<string>();
 
   const thumbnails: { [identity: string]: string } = {
     E5F274B870BDA01D:
@@ -485,8 +491,31 @@ function App() {
   //       { headers: headers3 }
   //     )
   //     .then((res: AxiosResponse<TokensResponse>) => {
-  //       setBondedTokens(res.data.pool.bonded_tokens);
+  //       console.log(res.data.pool.bonded_tokens);
+  //       // setBondedTokens(res.data.pool.bonded_tokens);
+
+  //       const bondedValue = parseFloat(res.data.pool.bonded_tokens);
+  //       const bondedString = (bondedValue / Math.pow(10, 6)).toLocaleString(
+  //         undefined,
+  //         {
+  //           minimumFractionDigits: 2,
+  //           maximumFractionDigits: 2,
+  //         }
+  //       );
+  //       console.log(bondedString);
+  //       setBondedTokens(bondedString);
+  //       const quorumValue = parseFloat(res.data.pool.bonded_tokens) * 0.2;
+  //       const quorumString = (quorumValue / Math.pow(10, 6)).toLocaleString(
+  //         undefined,
+  //         {
+  //           minimumFractionDigits: 2,
+  //           maximumFractionDigits: 2,
+  //         }
+  //       );
+  //       console.log(quorumString);
+  //       setQuorum(quorumString);
   //     })
+
   //     .catch((err: AxiosError) => console.log(err));
   // }, []);
 
@@ -569,12 +598,52 @@ function App() {
 
     const totalPowerYes = calculateTotalPower("containerYes");
     console.log("Total power for containerYes:", totalPowerYes);
+    const yesVotes = (totalPowerYes / Math.pow(10, 6)).toLocaleString(
+      undefined,
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    );
+    setSumYes(yesVotes);
     const totalPowerNo = calculateTotalPower("containerNo");
     console.log("Total power for containerNo:", totalPowerNo);
+    const noVotes = (totalPowerNo / Math.pow(10, 6)).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    setSumNo(noVotes);
     const totalPowerNwv = calculateTotalPower("containerNwv");
     console.log("Total power for containerNwv:", totalPowerNwv);
+    const nwvVotes = (totalPowerNwv / Math.pow(10, 6)).toLocaleString(
+      undefined,
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    );
+    setSumNwv(nwvVotes);
+
     const totalPowerAbs = calculateTotalPower("containerAbs");
     console.log("Total power for containerAbs:", totalPowerAbs);
+    const absVotes = (totalPowerAbs / Math.pow(10, 6)).toLocaleString(
+      undefined,
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    );
+    setSumAbs(absVotes);
+
+    const totalVotesNumber =
+      totalPowerYes + totalPowerNo + totalPowerNwv + totalPowerAbs;
+    const totalVotesString = (
+      totalVotesNumber / Math.pow(10, 6)
+    ).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    setTotalVotes(totalVotesString);
   }
 
   // console.log the array of draggables belonging to the Yes container. useEffect to keep it updated and log each time it changes
@@ -750,25 +819,37 @@ function App() {
               </div>
               <div className="results-right">
                 <div className="turnout">
-                  <h2>Turnout: "............"</h2>
-                  <h3>Quorum: "............" OSMO (20% of total stake)</h3>
+                  {/* <h2>Turnout: {(totalVotes / bondedTokens)}</h2> */}
+                  <h3>Quorum: {quorum} OSMO (20% of total stake)</h3>
                 </div>
                 <div className="tallies">
                   <div className="tallyjawn">
                     <h2>YES: ".........."</h2>
-                    <h3>104,669,699 OSMO</h3>
+                    <div className="tttt">
+                      <h4>{sumYes}</h4>
+                      <h4>OSMO</h4>
+                    </div>
                   </div>
                   <div className="tallyjawn">
                     <h2>NO: ".........."</h2>
-                    <h3>104,669,699 OSMO</h3>
+                    <div className="tttt">
+                      <h4>{sumNo}</h4>
+                      <h4>OSMO</h4>
+                    </div>
                   </div>
                   <div className="tallyjawn">
                     <h2>NWV: ".........."</h2>
-                    <h3>104,669,699 OSMO</h3>
+                    <div className="tttt">
+                      <h4>{sumNwv}</h4>
+                      <h4>OSMO</h4>
+                    </div>
                   </div>
                   <div className="tallyjawn">
                     <h2>ABSTAIN: ".........."</h2>
-                    <h3>104,669,699 OSMO</h3>
+                    <div className="tttt">
+                      <h4>{sumAbs}</h4>
+                      <h4>OSMO</h4>
+                    </div>
                   </div>
                 </div>
               </div>
