@@ -415,7 +415,7 @@ function App() {
     labels: ["Yes", "No", "No With Veto", "Abstain"],
     datasets: [
       {
-        label: "# of Wallets",
+        label: "% of Votes",
         data: [yesPercentage, noPercentage, nwvPercentage, absPercentage],
         backgroundColor: ["#482ce1", "#d630f7", "#ff0077", "#6161ab"],
         borderColor: ["#28274f"],
@@ -426,11 +426,14 @@ function App() {
 
   const partChartOptions = {
     responsive: true,
-    // layout: {
-    //   padding: {
-    //     bottom: 20,
-    //   },
-    // },
+    layout: {
+      padding: {
+        bottom: 12,
+        top: 12,
+        // left: 20,
+        // right: 20,
+      },
+    },
     plugins: {
       legend: {
         display: false,
@@ -500,35 +503,64 @@ function App() {
     data: any;
   }
 
+  useEffect(() => {
+    axios
+      .get<TokensResponse>(
+        "https://lcd-osmosis.keplr.app/cosmos/staking/v1beta1/pool",
+        { headers: headers3 }
+      )
+      .then((res: AxiosResponse<TokensResponse>) => {
+        const bondedValue = parseFloat(res.data.pool.bonded_tokens);
+        const bondedString = (bondedValue / Math.pow(10, 6)).toLocaleString(
+          undefined,
+          {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }
+        );
+        console.log(bondedString);
+        setBondedTokens(bondedString);
+        const quorumValue = parseFloat(res.data.pool.bonded_tokens) * 0.2;
+        const quorumString = (quorumValue / Math.pow(10, 6)).toLocaleString(
+          undefined,
+          {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }
+        );
+        console.log(quorumString);
+        setQuorum(quorumString);
+      })
+
+      .catch((err: AxiosError) => console.log(err));
+  }, []);
+
   // useEffect(() => {
   //   axios
-  //     .get<TokensResponse>(
-  //       "https://lcd-osmosis.keplr.app/cosmos/staking/v1beta1/pool",
+  //     .get<ValidatorResponse>(
+  //       "https://lcd-osmosis.keplr.app/cosmos/staking/v1beta1/validators?pagination.limit=1000",
   //       { headers: headers3 }
   //     )
-  //     .then((res: AxiosResponse<TokensResponse>) => {
-  //       const bondedValue = parseFloat(res.data.pool.bonded_tokens);
-  //       const bondedString = (bondedValue / Math.pow(10, 6)).toLocaleString(
-  //         undefined,
-  //         {
-  //           minimumFractionDigits: 2,
-  //           maximumFractionDigits: 2,
+  //     .then((res: AxiosResponse<ValidatorResponse>) => {
+  //       const sortedValidators = res.data.validators.sort(
+  //         (a: Validatooor, b: Validatooor) =>
+  //           parseInt(b.tokens) - parseInt(a.tokens)
+  //       );
+  //       const top150Validators = sortedValidators.slice(0, 151);
+  //       console.log(top150Validators);
+  //       const combinedArray: ValidatorWithThumbnail[] = top150Validators.map(
+  //         (item: Validatooor) => {
+  //           return {
+  //             ...item,
+  //             thumbnail: thumbnails[item.description.identity],
+  //             containerId: "ROOT",
+  //           };
   //         }
   //       );
-  //       console.log(bondedString);
-  //       setBondedTokens(bondedString);
-  //       const quorumValue = parseFloat(res.data.pool.bonded_tokens) * 0.2;
-  //       const quorumString = (quorumValue / Math.pow(10, 6)).toLocaleString(
-  //         undefined,
-  //         {
-  //           minimumFractionDigits: 2,
-  //           maximumFractionDigits: 2,
-  //         }
-  //       );
-  //       console.log(quorumString);
-  //       setQuorum(quorumString);
+  //       console.log(combinedArray);
+  //       setVjawns(combinedArray);
+  //       setDraggables(combinedArray);
   //     })
-
   //     .catch((err: AxiosError) => console.log(err));
   // }, []);
 
@@ -539,7 +571,21 @@ function App() {
   //       { headers: headers3 }
   //     )
   //     .then((res: AxiosResponse<ValidatorResponse>) => {
-  //       const sortedValidators = res.data.validators.sort(
+  //       // Create a new Set to keep track of unique validator identities
+  //       const uniqueIdentities = new Set();
+
+  //       // Filter out duplicate validators based on their identity
+  //       const uniqueValidators = res.data.validators.filter(
+  //         (validator: Validatooor) => {
+  //           if (uniqueIdentities.has(validator.description.identity)) {
+  //             return false;
+  //           }
+  //           uniqueIdentities.add(validator.description.identity);
+  //           return true;
+  //         }
+  //       );
+
+  //       const sortedValidators = uniqueValidators.sort(
   //         (a: Validatooor, b: Validatooor) =>
   //           parseInt(b.tokens) - parseInt(a.tokens)
   //       );

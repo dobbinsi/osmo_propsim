@@ -44,7 +44,8 @@ body {
   padding: 20px;
   background-color: #28274f;
   border-radius: 15px;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -200,11 +201,20 @@ body {
 
 .valhouse {
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   flex-wrap: wrap;
+  max-height: 260px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   /* padding-top: 30px; */
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
   /* overflow: scroll; */
+}
+
+.valhouse::-webkit-scrollbar {
+  display: none;
 }
 
 .val-container {
@@ -351,13 +361,14 @@ body {
 }
 
 .rooty {
-  height: 100%;
+  height: 260px;
   width: 100%;
   z-index: 10;
   display: flex;
   gap: 8px;
-  justify-content: center;
+  /* justify-content: center; */
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .tallies {
