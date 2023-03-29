@@ -32,6 +32,22 @@ function App() {
   const [totalVotes, setTotalVotes] = React.useState<string>();
   const [quorum, setQuorum] = React.useState<string>();
 
+  const bondedTokensNum = parseFloat(bondedTokens || "0");
+  const qNumber = parseFloat(quorum || "0");
+  const sumYesNum = parseFloat(sumYes || "0");
+  const sumNoNum = parseFloat(sumNo || "0");
+  const sumNwvNum = parseFloat(sumNwv || "0");
+  const sumAbsNum = parseFloat(sumAbs || "0");
+  const totalVotesNum = parseFloat(totalVotes || "0");
+
+  const yesPercentage = ((sumYesNum / totalVotesNum) * 100 || 0.0).toFixed(2);
+  const yesYes = (sumYesNum / totalVotesNum) * 100;
+  const noPercentage = ((sumNoNum / totalVotesNum) * 100 || 0.0).toFixed(2);
+  const nwvPercentage = ((sumNwvNum / totalVotesNum) * 100 || 0.0).toFixed(2);
+  const absPercentage = ((sumAbsNum / totalVotesNum) * 100 || 0.0).toFixed(2);
+
+  const turnout = ((totalVotesNum / bondedTokensNum) * 100 || 0.0).toFixed(2);
+
   const thumbnails: { [identity: string]: string } = {
     E5F274B870BDA01D:
       "https://s3.amazonaws.com/keybase_processed_uploads/bd5fb87f241bd78a9c4bceaaa849ca05_360_360.jpg",
@@ -400,10 +416,10 @@ function App() {
     datasets: [
       {
         label: "# of Wallets",
-        data: [70, 10, 10, 10],
-        backgroundColor: ["#482ce1", "#5e19a0", "#da41c2", "#6161ab"],
-        // borderColor: ["#4b423f"],
-        // borderWidth: 1.5,
+        data: [yesPercentage, noPercentage, nwvPercentage, absPercentage],
+        backgroundColor: ["#482ce1", "#d630f7", "#ff0077", "#6161ab"],
+        borderColor: ["#28274f"],
+        borderWidth: 1.5,
       },
     ],
   };
@@ -491,9 +507,6 @@ function App() {
   //       { headers: headers3 }
   //     )
   //     .then((res: AxiosResponse<TokensResponse>) => {
-  //       console.log(res.data.pool.bonded_tokens);
-  //       // setBondedTokens(res.data.pool.bonded_tokens);
-
   //       const bondedValue = parseFloat(res.data.pool.bonded_tokens);
   //       const bondedString = (bondedValue / Math.pow(10, 6)).toLocaleString(
   //         undefined,
@@ -805,7 +818,11 @@ function App() {
                 <h2>Results</h2>
               </div>
               <div>
-                <h2>PASSED</h2>
+                {totalVotesNum > qNumber && yesYes > 50.0 ? (
+                  <h2>PASSED</h2>
+                ) : (
+                  <h2>REJECTED</h2>
+                )}
               </div>
             </div>
             <div className="results-main">
@@ -819,33 +836,33 @@ function App() {
               </div>
               <div className="results-right">
                 <div className="turnout">
-                  {/* <h2>Turnout: {(totalVotes / bondedTokens)}</h2> */}
+                  <h2>Turnout: {turnout}%</h2>
                   <h3>Quorum: {quorum} OSMO (20% of total stake)</h3>
                 </div>
                 <div className="tallies">
                   <div className="tallyjawn">
-                    <h2>YES: ".........."</h2>
+                    <h2 className="yescolor">YES: {yesPercentage}%</h2>
                     <div className="tttt">
                       <h4>{sumYes}</h4>
                       <h4>OSMO</h4>
                     </div>
                   </div>
                   <div className="tallyjawn">
-                    <h2>NO: ".........."</h2>
+                    <h2 className="nocolor">NO: {noPercentage}%</h2>
                     <div className="tttt">
                       <h4>{sumNo}</h4>
                       <h4>OSMO</h4>
                     </div>
                   </div>
                   <div className="tallyjawn">
-                    <h2>NWV: ".........."</h2>
+                    <h2 className="nwvcolor">NWV: {nwvPercentage}%</h2>
                     <div className="tttt">
                       <h4>{sumNwv}</h4>
                       <h4>OSMO</h4>
                     </div>
                   </div>
                   <div className="tallyjawn">
-                    <h2>ABSTAIN: ".........."</h2>
+                    <h2 className="abscolor">ABSTAIN: {absPercentage}%</h2>
                     <div className="tttt">
                       <h4>{sumAbs}</h4>
                       <h4>OSMO</h4>

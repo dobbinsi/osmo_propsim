@@ -299,7 +299,7 @@ body {
 .results-right {
   /* background-color: blueviolet; */
   flex: 3;
-  margin-left: 20px;
+  margin-left: 40px;
   margin-right: 50px;
 }
 
@@ -362,13 +362,13 @@ body {
 
 .tallies {
   display: flex;
-  gap: 60px;
+  gap: 50px;
   justify-content: space-between;
 }
 
 .tallyjawn {
-  width: 200px;
-  min-width: 200px;
+  width: 240px;
+  min-width: 240px;
   border: 2px solid #8f82fb;
   border-radius: 15px;
   padding: 10px;
@@ -380,12 +380,28 @@ body {
 
 .yesss {
   background-color: #482ce1;
-  background-color: #ab23c5;
-  background-color: #da41c2;
+  background-color: #d630f7;
+  background-color: #ff0077;
   background-color: #6161ab;
 }
 
 .tttt {
   display: flex;
   justify-content: space-between;
+}
+
+.yescolor {
+  color: #055dff;
+}
+
+.nocolor {
+  color: #d630f7;
+}
+
+.nwvcolor {
+  color: #ff0077;
+}
+
+.abscolor {
+  color: #6161ab;
 }
