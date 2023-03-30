@@ -41,7 +41,7 @@ function App() {
   const totalVotesNum = parseFloat(totalVotes || "0");
 
   const yesPercentage = ((sumYesNum / totalVotesNum) * 100 || 0.0).toFixed(2);
-  const yesYes = (sumYesNum / totalVotesNum) * 100;
+  const yesYes = (sumYesNum / (totalVotesNum - sumAbsNum)) * 100;
   const noPercentage = ((sumNoNum / totalVotesNum) * 100 || 0.0).toFixed(2);
   const nwvPercentage = ((sumNwvNum / totalVotesNum) * 100 || 0.0).toFixed(2);
   const absPercentage = ((sumAbsNum / totalVotesNum) * 100 || 0.0).toFixed(2);
@@ -198,7 +198,7 @@ function App() {
     "51468B615127273A":
       "https://s3.amazonaws.com/keybase_processed_uploads/4c37bcb94523674a84d57cab554c5c05_360_360.jpg",
     "4D3303E20A4D2C32":
-      "https://s3.amazonaws.com/keybase_processed_uploads/766cc67618315081208647bdceb42605_360_360.jpg",
+      "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F051cdbd6d051d3cafcdb45377c6b5c05_360_360.jpg&w=128&q=75",
     "913CE38447233C01":
       "https://s3.amazonaws.com/keybase_processed_uploads/61d84fdd3a5969a1f8d832ca8f536a05_360_360.jpg",
     "5A8AB49CF5CAAF3C":
@@ -409,6 +409,14 @@ function App() {
       "https://s3.amazonaws.com/keybase_processed_uploads/7f9829a56a441dc172bf30580e7c4d05_360_360.jpg",
     "2C12B61930DF3586":
       "https://s3.amazonaws.com/keybase_processed_uploads/c2fdefa03db4d6ef1872239955449e05_360_360.jpg",
+    "0E480E2B83B23D80":
+      "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F6ce44a0b3bbd2a99933ccb10a4a46305_360_360.jpg&w=128&q=75",
+    "09A303A2C724C59":
+      "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper102ruvpv2srmunfffxavttxnhezln6fncrdjd27.png",
+    "2B1788BD8D14A3AF":
+      "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F1db7b1f4f2030c71264fb76507a09a05_360_360.jpg&w=128&q=75",
+    "357F80896B3311B4":
+      "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F627921d6ba4c1f941d0a12b015a2bc05_360_360.jpg&w=128&q=75",
   };
 
   const partChartData = {
@@ -535,77 +543,48 @@ function App() {
       .catch((err: AxiosError) => console.log(err));
   }, []);
 
-  // useEffect(() => {
-  //   axios
-  //     .get<ValidatorResponse>(
-  //       "https://lcd-osmosis.keplr.app/cosmos/staking/v1beta1/validators?pagination.limit=1000",
-  //       { headers: headers3 }
-  //     )
-  //     .then((res: AxiosResponse<ValidatorResponse>) => {
-  //       const sortedValidators = res.data.validators.sort(
-  //         (a: Validatooor, b: Validatooor) =>
-  //           parseInt(b.tokens) - parseInt(a.tokens)
-  //       );
-  //       const top150Validators = sortedValidators.slice(0, 151);
-  //       console.log(top150Validators);
-  //       const combinedArray: ValidatorWithThumbnail[] = top150Validators.map(
-  //         (item: Validatooor) => {
-  //           return {
-  //             ...item,
-  //             thumbnail: thumbnails[item.description.identity],
-  //             containerId: "ROOT",
-  //           };
-  //         }
-  //       );
-  //       console.log(combinedArray);
-  //       setVjawns(combinedArray);
-  //       setDraggables(combinedArray);
-  //     })
-  //     .catch((err: AxiosError) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get<ValidatorResponse>(
+        "https://lcd-osmosis.keplr.app/cosmos/staking/v1beta1/validators?pagination.limit=1000",
+        { headers: headers3 }
+      )
+      .then((res: AxiosResponse<ValidatorResponse>) => {
+        // Create a new Set to keep track of unique validator identities
+        const uniqueIdentities = new Set();
 
-  // useEffect(() => {
-  //   axios
-  //     .get<ValidatorResponse>(
-  //       "https://lcd-osmosis.keplr.app/cosmos/staking/v1beta1/validators?pagination.limit=1000",
-  //       { headers: headers3 }
-  //     )
-  //     .then((res: AxiosResponse<ValidatorResponse>) => {
-  //       // Create a new Set to keep track of unique validator identities
-  //       const uniqueIdentities = new Set();
+        // Filter out duplicate validators based on their identity
+        const uniqueValidators = res.data.validators.filter(
+          (validator: Validatooor) => {
+            if (uniqueIdentities.has(validator.description.identity)) {
+              return false;
+            }
+            uniqueIdentities.add(validator.description.identity);
+            return true;
+          }
+        );
 
-  //       // Filter out duplicate validators based on their identity
-  //       const uniqueValidators = res.data.validators.filter(
-  //         (validator: Validatooor) => {
-  //           if (uniqueIdentities.has(validator.description.identity)) {
-  //             return false;
-  //           }
-  //           uniqueIdentities.add(validator.description.identity);
-  //           return true;
-  //         }
-  //       );
-
-  //       const sortedValidators = uniqueValidators.sort(
-  //         (a: Validatooor, b: Validatooor) =>
-  //           parseInt(b.tokens) - parseInt(a.tokens)
-  //       );
-  //       const top150Validators = sortedValidators.slice(0, 151);
-  //       console.log(top150Validators);
-  //       const combinedArray: ValidatorWithThumbnail[] = top150Validators.map(
-  //         (item: Validatooor) => {
-  //           return {
-  //             ...item,
-  //             thumbnail: thumbnails[item.description.identity],
-  //             containerId: "ROOT",
-  //           };
-  //         }
-  //       );
-  //       console.log(combinedArray);
-  //       setVjawns(combinedArray);
-  //       setDraggables(combinedArray);
-  //     })
-  //     .catch((err: AxiosError) => console.log(err));
-  // }, []);
+        const sortedValidators = uniqueValidators.sort(
+          (a: Validatooor, b: Validatooor) =>
+            parseInt(b.tokens) - parseInt(a.tokens)
+        );
+        const top150Validators = sortedValidators.slice(0, 147);
+        console.log(top150Validators);
+        const combinedArray: ValidatorWithThumbnail[] = top150Validators.map(
+          (item: Validatooor) => {
+            return {
+              ...item,
+              thumbnail: thumbnails[item.description.identity],
+              containerId: "ROOT",
+            };
+          }
+        );
+        console.log(combinedArray);
+        setVjawns(combinedArray);
+        setDraggables(combinedArray);
+      })
+      .catch((err: AxiosError) => console.log(err));
+  }, []);
 
   const sensors = useSensors(
     useSensor(KeyboardSensor),
@@ -864,7 +843,7 @@ function App() {
                 <h2>Results</h2>
               </div>
               <div>
-                {totalVotesNum > qNumber && yesYes > 50.0 ? (
+                {totalVotesNum > qNumber && yesYes > 49.999 ? (
                   <h2>PASSED</h2>
                 ) : (
                   <h2>REJECTED</h2>
@@ -934,28 +913,37 @@ function App() {
       </div>
       <DragOverlay>
         {activeItem && (
-          <div className="draggable draggable-overlay">
-            <div className="val-container">
-              <div className="logo-box">
-                <img src={activeItem.thumbnail} className="vlogo" alt="logo" />
-                <h4>{activeItem.description.moniker}</h4>
-              </div>
-              <div className="vinfo">
-                <div className="vinfo-power">
-                  <h5>
-                    {(parseFloat(activeItem.tokens) / 1_000_000).toLocaleString(
-                      undefined,
-                      {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      }
-                    )}
-                  </h5>
-                  <h5 className="osmolabel">OSMO</h5>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Draggable
+            key={activeItem.description.identity}
+            id={activeItem.description.identity}
+            name={activeItem.description.moniker}
+            logo={activeItem.thumbnail}
+            power={activeItem.tokens}
+            draggingColor="#025dff"
+            {...activeItem}
+          />
+          // <div className="draggable draggable-overlay">
+          //   <div className="val-container">
+          //     <div className="logo-box">
+          //       <img src={activeItem.thumbnail} className="vlogo" alt="logo" />
+          //       <h4>{activeItem.description.moniker}</h4>
+          //     </div>
+          //     <div className="vinfo">
+          //       <div className="vinfo-power">
+          //         <h5>
+          //           {(parseFloat(activeItem.tokens) / 1_000_000).toLocaleString(
+          //             undefined,
+          //             {
+          //               minimumFractionDigits: 2,
+          //               maximumFractionDigits: 2,
+          //             }
+          //           )}
+          //         </h5>
+          //         <h5 className="osmolabel">OSMO</h5>
+          //       </div>
+          //     </div>
+          //   </div>
+          // </div>
         )}
       </DragOverlay>
     </DndContext>
