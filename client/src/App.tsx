@@ -2,6 +2,7 @@ import "./App.css";
 import osmo from "./logos/osmologo.svg";
 import flipjawn from "./logos/flipsidewhite.png";
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { Analytics } from "@vercel/analytics/react";
 
 import React, { useEffect, useRef, useState } from "react";
 import { DragOverEvent, DragStartEvent } from "@dnd-kit/core";
@@ -892,6 +893,7 @@ function App() {
           />
         )}
       </DragOverlay>
+      <Analytics />
     </DndContext>
   );
 }
