@@ -9,7 +9,6 @@ type DroppableProps = {
 
 export function Droppable(props: DroppableProps) {
   const { children, id, className } = props;
-  //Read more about the useDroppable hook here: https://docs.dndkit.com/api-documentation/droppable/usedroppable
   const { isOver, setNodeRef } = useDroppable({
     id: id,
   });
@@ -20,7 +19,6 @@ export function Droppable(props: DroppableProps) {
   };
 
   return (
-    //The callback "setNodeRef"  ref is important, it tells dnd-kit that this is a droppable component
     <div ref={setNodeRef} className={className} style={style}>
       {children}
     </div>

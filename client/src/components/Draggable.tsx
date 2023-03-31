@@ -13,10 +13,9 @@ type DraggableProps = {
 
 export function Draggable(props: DraggableProps) {
   const { id, styles, name, logo, power, draggingColor } = props;
-  //Read more about the useDraggable hook here: https://docs.dndkit.com/api-documentation/draggable/usedraggable
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({
-      id, //This unique id is required
+      id,
     });
 
   const style = {
@@ -35,7 +34,6 @@ export function Draggable(props: DraggableProps) {
 
   return (
     <div
-      //This callback ref is important, it tells dnd-kit that this is a draggable component
       ref={setNodeRef}
       style={
         draggingColor
@@ -43,8 +41,6 @@ export function Draggable(props: DraggableProps) {
           : { ...style, ...styles }
       }
       className="draggable"
-      //It is important that you spread the listeners & attributes object on the
-      //element you want to 'listen' for drag event.
       {...listeners}
       {...attributes}
     >

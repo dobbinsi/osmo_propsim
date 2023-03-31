@@ -316,22 +316,8 @@ body {
 .draggable {
   cursor: grab;
   z-index: 10;
-  /* filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
-        drop-shadow(0 4px 3px rgb(0 0 0 / 0.1)); */
   display: flex;
   align-items: center;
-  /* background: var(--shark-900);
-      justify-content: center;
-      gap: 4px;
-      width: 64px;
-      height: 64px;
-      padding: 6px;
-      border-radius: 6px;
-      box-shadow: var(--shadow-border-shiny);
-      cursor: grab;
-      font-weight: 900;
-      font-size: 24px;
-      line-height: 32px; */
 }
 
 .draggable-overlay {
@@ -388,13 +374,6 @@ body {
 
 .turnout {
   margin-bottom: 40px;
-}
-
-.yesss {
-  background-color: #482ce1;
-  background-color: #d630f7;
-  background-color: #ff0077;
-  background-color: #6161ab;
 }
 
 .tttt {

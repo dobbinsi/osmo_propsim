@@ -38,14 +38,14 @@ function App() {
   const sumNoNum = parseFloat(sumNo || "0");
   const sumNwvNum = parseFloat(sumNwv || "0");
   const sumAbsNum = parseFloat(sumAbs || "0");
-  const totalVotesNum = parseFloat(totalVotes || "0");
 
+  const totalVotesNum = sumYesNum + sumNoNum + sumNwvNum + sumAbsNum;
   const yesPercentage = ((sumYesNum / totalVotesNum) * 100 || 0.0).toFixed(2);
-  const yesYes = (sumYesNum / (totalVotesNum - sumAbsNum)) * 100;
   const noPercentage = ((sumNoNum / totalVotesNum) * 100 || 0.0).toFixed(2);
   const nwvPercentage = ((sumNwvNum / totalVotesNum) * 100 || 0.0).toFixed(2);
   const absPercentage = ((sumAbsNum / totalVotesNum) * 100 || 0.0).toFixed(2);
 
+  const yesYes = (sumYesNum / (totalVotesNum - sumAbsNum)) * 100;
   const turnout = ((totalVotesNum / bondedTokensNum) * 100 || 0.0).toFixed(2);
 
   const thumbnails: { [identity: string]: string } = {
@@ -438,8 +438,6 @@ function App() {
       padding: {
         bottom: 12,
         top: 12,
-        // left: 20,
-        // right: 20,
       },
     },
     plugins: {
@@ -501,13 +499,11 @@ function App() {
 
   interface ValidatorResponse {
     validators: any;
-    // Define the response structure here, for example:
     data: any;
   }
 
   interface TokensResponse {
     pool: any;
-    // Define the response structure here, for example:
     data: any;
   }
 
@@ -526,7 +522,6 @@ function App() {
             maximumFractionDigits: 2,
           }
         );
-        console.log(bondedString);
         setBondedTokens(bondedString);
         const quorumValue = parseFloat(res.data.pool.bonded_tokens) * 0.2;
         const quorumString = (quorumValue / Math.pow(10, 6)).toLocaleString(
@@ -536,7 +531,6 @@ function App() {
             maximumFractionDigits: 2,
           }
         );
-        console.log(quorumString);
         setQuorum(quorumString);
       })
 
@@ -550,10 +544,8 @@ function App() {
         { headers: headers3 }
       )
       .then((res: AxiosResponse<ValidatorResponse>) => {
-        // Create a new Set to keep track of unique validator identities
         const uniqueIdentities = new Set();
 
-        // Filter out duplicate validators based on their identity
         const uniqueValidators = res.data.validators.filter(
           (validator: Validatooor) => {
             if (uniqueIdentities.has(validator.description.identity)) {
@@ -569,7 +561,6 @@ function App() {
             parseInt(b.tokens) - parseInt(a.tokens)
         );
         const top150Validators = sortedValidators.slice(0, 147);
-        console.log(top150Validators);
         const combinedArray: ValidatorWithThumbnail[] = top150Validators.map(
           (item: Validatooor) => {
             return {
@@ -579,7 +570,6 @@ function App() {
             };
           }
         );
-        console.log(combinedArray);
         setVjawns(combinedArray);
         setDraggables(combinedArray);
       })
@@ -604,29 +594,21 @@ function App() {
     const activeDraggable = draggables.find(
       (draggable) => draggable.description.identity === activeId
     );
-    console.log("drag start");
     setActiveItem(activeDraggable);
-    console.log(activeItem);
   }
 
   function handleDragOver(ev: DragOverEvent) {
     const { active, over } = ev;
     if (!over) return;
-    //the id of the active draggable
     const activeId = active.id;
 
-    //The id of the continaer a draggable is dragged over
-    //in our example the overId can either be ROOT, A or B
     const overId = over.id as string;
-    console.log(overId);
 
     setDraggables((draggables) => {
       return draggables.map((draggable) => {
-        //if we are dragging a draggable over a container
         if (draggable.description.identity === activeId) {
           return {
             ...draggable,
-            //update its containerId to match the overId
             containerId: overId,
           };
         }
@@ -635,7 +617,6 @@ function App() {
     });
 
     const totalPowerYes = calculateTotalPower("containerYes");
-    console.log("Total power for containerYes:", totalPowerYes);
     const yesVotes = (totalPowerYes / Math.pow(10, 6)).toLocaleString(
       undefined,
       {
@@ -645,14 +626,12 @@ function App() {
     );
     setSumYes(yesVotes);
     const totalPowerNo = calculateTotalPower("containerNo");
-    console.log("Total power for containerNo:", totalPowerNo);
     const noVotes = (totalPowerNo / Math.pow(10, 6)).toLocaleString(undefined, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
     setSumNo(noVotes);
     const totalPowerNwv = calculateTotalPower("containerNwv");
-    console.log("Total power for containerNwv:", totalPowerNwv);
     const nwvVotes = (totalPowerNwv / Math.pow(10, 6)).toLocaleString(
       undefined,
       {
@@ -663,7 +642,6 @@ function App() {
     setSumNwv(nwvVotes);
 
     const totalPowerAbs = calculateTotalPower("containerAbs");
-    console.log("Total power for containerAbs:", totalPowerAbs);
     const absVotes = (totalPowerAbs / Math.pow(10, 6)).toLocaleString(
       undefined,
       {
@@ -684,24 +662,14 @@ function App() {
     setTotalVotes(totalVotesString);
   }
 
-  // console.log the array of draggables belonging to the Yes container. useEffect to keep it updated and log each time it changes
-
-  // function logContainerYesItems() {
-  //   const containerYesItems = draggables.filter(
-  //     (draggable) => draggable.containerId === "containerYes"
-  //   );
-  //   console.log(containerYesItems);
-  // }
-
-  // useEffect(() => {
-  //   logContainerYesItems();
-  // }, [draggables]);
-
-  // sum the total 'power' of all draggables in the Yes array
   function calculateTotalPower(containerId: string): number {
     const filteredDraggables = draggables.filter(
       (draggable) => draggable.containerId === containerId
     );
+
+    if (filteredDraggables.length === 0) {
+      return 0;
+    }
 
     const totalPower = filteredDraggables.reduce((sum, draggable) => {
       return sum + parseFloat(draggable.tokens);
@@ -922,28 +890,6 @@ function App() {
             draggingColor="#025dff"
             {...activeItem}
           />
-          // <div className="draggable draggable-overlay">
-          //   <div className="val-container">
-          //     <div className="logo-box">
-          //       <img src={activeItem.thumbnail} className="vlogo" alt="logo" />
-          //       <h4>{activeItem.description.moniker}</h4>
-          //     </div>
-          //     <div className="vinfo">
-          //       <div className="vinfo-power">
-          //         <h5>
-          //           {(parseFloat(activeItem.tokens) / 1_000_000).toLocaleString(
-          //             undefined,
-          //             {
-          //               minimumFractionDigits: 2,
-          //               maximumFractionDigits: 2,
-          //             }
-          //           )}
-          //         </h5>
-          //         <h5 className="osmolabel">OSMO</h5>
-          //       </div>
-          //     </div>
-          //   </div>
-          // </div>
         )}
       </DragOverlay>
     </DndContext>
