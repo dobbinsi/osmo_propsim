@@ -213,7 +213,7 @@ function App() {
     "216E0EE1BA80B5F8":
       "https://s3.amazonaws.com/keybase_processed_uploads/c6f6faf5d7039892c4140877189ade05_360_360.jpg",
     "87D9921253A2A9EB":
-      "https://s3.amazonaws.com/keybase_processed_uploads/8c54cca4a597dd5dfdd9665d7ebdda05_360_360.jpg",
+      "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper18m4wkxw865cmxu7wv43pk9wgssw022kjyxz6wz.png",
     FEF740F1760E1B56:
       "https://s3.amazonaws.com/keybase_processed_uploads/085d09c506dceeb931a504f249736705_360_360.jpg",
     "9203983F91296B66":

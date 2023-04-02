@@ -59,18 +59,18 @@ body {
 }
 
 .bottom {
-  height: 500px;
+  height: 400px;
   margin-top: 50px;
   display: flex;
   justify-content: space-between;
 }
 
 .bucket {
-  width: 22%;
+  width: 23%;
 }
 
 .yes {
-  height: 400px;
+  height: 300px;
   /* width: 400px; */
   padding: 2px;
   position: relative;
@@ -98,7 +98,7 @@ body {
 }
 
 .abstain {
-  height: 400px;
+  height: 300px;
   /* width: 400px; */
   padding: 2px;
   position: relative;
@@ -126,7 +126,7 @@ body {
 }
 
 .no {
-  height: 400px;
+  height: 300px;
   /* width: 400px; */
   padding: 2px;
   position: relative;
@@ -154,7 +154,7 @@ body {
 }
 
 .noveto {
-  height: 400px;
+  height: 300px;
   /* width: 400px; */
   padding: 2px;
   position: relative;
@@ -263,7 +263,6 @@ body {
 
 .results {
   height: 300px;
-  width: 100%;
   margin-top: 15px;
   padding: 20px;
   background-color: #28274f;
