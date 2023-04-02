@@ -688,7 +688,7 @@ function App() {
       <div className="wrapper">
         <div className="header">
           <img src={osmo} className="logomain" alt="osmo" />
-          <h1>Proposal Simulator</h1>
+          <h1 className="psim">Prop Simulator</h1>
         </div>
         <div className="main">
           <div className="top">
@@ -713,7 +713,7 @@ function App() {
             </div>
           </div>
           <div className="bottom">
-            <div>
+            <div className="bucket">
               <div className="category">
                 <h2>Yes</h2>
               </div>
@@ -736,7 +736,7 @@ function App() {
                 </Droppable>
               </div>
             </div>
-            <div>
+            <div className="bucket">
               <div className="category">
                 <h2>No</h2>
               </div>
@@ -759,7 +759,7 @@ function App() {
                 </Droppable>
               </div>
             </div>
-            <div>
+            <div className="bucket">
               <div className="category">
                 <h2>No With Veto</h2>
               </div>
@@ -782,7 +782,7 @@ function App() {
                 </Droppable>
               </div>
             </div>
-            <div>
+            <div className="bucket">
               <div className="category">
                 <h2>Abstain</h2>
               </div>
@@ -835,28 +835,28 @@ function App() {
                 </div>
                 <div className="tallies">
                   <div className="tallyjawn">
-                    <h2 className="yescolor">YES: {yesPercentage}%</h2>
+                    <h3 className="yescolor">YES: {yesPercentage}%</h3>
                     <div className="tttt">
                       <h4>{sumYes}</h4>
                       <h4>OSMO</h4>
                     </div>
                   </div>
                   <div className="tallyjawn">
-                    <h2 className="nocolor">NO: {noPercentage}%</h2>
+                    <h3 className="nocolor">NO: {noPercentage}%</h3>
                     <div className="tttt">
                       <h4>{sumNo}</h4>
                       <h4>OSMO</h4>
                     </div>
                   </div>
                   <div className="tallyjawn">
-                    <h2 className="nwvcolor">NWV: {nwvPercentage}%</h2>
+                    <h3 className="nwvcolor">NWV: {nwvPercentage}%</h3>
                     <div className="tttt">
                       <h4>{sumNwv}</h4>
                       <h4>OSMO</h4>
                     </div>
                   </div>
                   <div className="tallyjawn">
-                    <h2 className="abscolor">ABSTAIN: {absPercentage}%</h2>
+                    <h3 className="abscolor">ABSTAIN: {absPercentage}%</h3>
                     <div className="tttt">
                       <h4>{sumAbs}</h4>
                       <h4>OSMO</h4>

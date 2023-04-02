@@ -65,9 +65,13 @@ body {
   justify-content: space-between;
 }
 
+.bucket {
+  width: 22%;
+}
+
 .yes {
   height: 400px;
-  width: 400px;
+  /* width: 400px; */
   padding: 2px;
   position: relative;
   background-color: #28274f;
@@ -95,7 +99,7 @@ body {
 
 .abstain {
   height: 400px;
-  width: 400px;
+  /* width: 400px; */
   padding: 2px;
   position: relative;
   background-color: #28274f;
@@ -123,7 +127,7 @@ body {
 
 .no {
   height: 400px;
-  width: 400px;
+  /* width: 400px; */
   padding: 2px;
   position: relative;
   background-color: #28274f;
@@ -151,7 +155,7 @@ body {
 
 .noveto {
   height: 400px;
-  width: 400px;
+  /* width: 400px; */
   padding: 2px;
   position: relative;
   background-color: #28274f;
@@ -220,8 +224,8 @@ body {
 .val-container {
   display: flex;
   justify-content: space-between;
-  width: 355px;
-  max-width: 355px;
+  width: 300px;
+  max-width: 300px;
   height: 70px;
   padding-left: 10px;
   padding-right: 10px;
@@ -259,6 +263,7 @@ body {
 
 .results {
   height: 300px;
+  width: 100%;
   margin-top: 15px;
   padding: 20px;
   background-color: #28274f;
@@ -288,15 +293,15 @@ body {
 
 .results-main {
   display: flex;
-  justify-content: space-around;
+  width: 100%;
+  /* justify-content: space-around; */
   align-items: center;
   /* margin-top: 50px; */
 }
 
 .results-left {
   /* background-color: green; */
-  width: 400px;
-  flex: 1;
+  width: 20%;
 }
 
 .dough {
@@ -308,9 +313,8 @@ body {
 
 .results-right {
   /* background-color: blueviolet; */
-  flex: 3;
+  width: 75%;
   margin-left: 40px;
-  margin-right: 50px;
 }
 
 .draggable {
@@ -360,13 +364,13 @@ body {
 
 .tallies {
   display: flex;
-  gap: 50px;
+  gap: 2%;
   justify-content: space-between;
 }
 
 .tallyjawn {
-  width: 240px;
-  min-width: 240px;
+  width: 22%;
+  /* min-width: 240px; */
   border: 2px solid #8f82fb;
   border-radius: 15px;
   padding: 10px;
@@ -395,4 +399,10 @@ body {
 
 .abscolor {
   color: #6161ab;
+}
+
+@media (max-width: 950px) {
+  .psim {
+    display: none;
+  }
 }
