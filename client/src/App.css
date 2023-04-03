@@ -39,20 +39,19 @@ body {
 }
 
 .list-house {
-  height: 300px;
+  height: 320px;
   margin-top: 50px;
   padding: 20px;
   background-color: #28274f;
   border-radius: 15px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  /* overflow-x: scroll; */
+  /* -ms-overflow-style: -ms-autohiding-scrollbar;
+  scrollbar-width: thin; */
 }
 
-.list-house::-webkit-scrollbar {
-  display: none;
-}
+/* .list-house::-webkit-scrollbar {
+  display:
+} */
 
 .list-house h2 {
   margin-bottom: 10px;
@@ -207,18 +206,25 @@ body {
   display: flex;
   /* justify-content: space-evenly; */
   flex-wrap: wrap;
-  max-height: 260px;
+  /* max-height: 260px; */
   overflow-x: auto;
   overflow-y: hidden;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  /* -ms-overflow-style: none; */
+  /* scrollbar-width: none; */
   /* padding-top: 30px; */
   /* padding-bottom: 30px; */
   /* overflow: scroll; */
+  padding-bottom: 10px;
 }
 
 .valhouse::-webkit-scrollbar {
-  display: none;
+  background-color: transparent;
+  height: 10px;
+}
+
+.valhouse::-webkit-scrollbar-thumb {
+  background-color: #025dff;
+  border-radius: 5px;
 }
 
 .val-container {
@@ -262,7 +268,7 @@ body {
 }
 
 .results {
-  height: 300px;
+  height: 320px;
   margin-top: 15px;
   padding: 20px;
   background-color: #28274f;
@@ -295,7 +301,7 @@ body {
   width: 100%;
   /* justify-content: space-around; */
   align-items: center;
-  /* margin-top: 50px; */
+  margin-top: 25px;
 }
 
 .results-left {
