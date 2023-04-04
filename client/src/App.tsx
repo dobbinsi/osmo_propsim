@@ -1,6 +1,7 @@
 import "./App.css";
 import osmo from "./logos/osmologo.svg";
 import flipjawn from "./logos/flipsidewhite.png";
+import keplr from "./logos/keplr.svg";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -885,7 +886,17 @@ function App() {
             className="footer-links"
           >
             {" "}
-            <img src={flipjawn} className="flipside-logo" alt="flipside" />{" "}
+            <img src={flipjawn} className="flipside-logo" alt="flipside" />
+            {" "}
+          </a>
+          <a
+            href="https://flipsidecrypto.xyz/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-links"
+          >
+            {" "}
+            <img src={keplr} className="keplr-logo" alt="keplr" />{" "}
           </a>
         </div>
       </div>
