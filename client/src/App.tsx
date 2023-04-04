@@ -24,6 +24,10 @@ import { Doughnut } from "react-chartjs-2";
 import DoughnutChart from "./components/DoughnutChart";
 
 function App() {
+  const handleInitialZoom = () => {
+    (document.body.style as any).zoom = "80%";
+  };
+
   const [bondedTokens, setBondedTokens] = React.useState<string>();
   const [vJawns, setVjawns] = React.useState<ValidatorWithThumbnail[]>([]);
   const [sumYes, setSumYes] = React.useState<string>();
@@ -509,6 +513,10 @@ function App() {
   }
 
   useEffect(() => {
+    handleInitialZoom();
+  }, []);
+
+  useEffect(() => {
     axios
       .get<TokensResponse>(
         "https://lcd-osmosis.keplr.app/cosmos/staking/v1beta1/pool",
@@ -684,6 +692,7 @@ function App() {
       sensors={sensors}
       onDragOver={handleDragOver}
       onDragStart={handleDragStart}
+      autoScroll={{ enabled: false, layoutShiftCompensation: false }}
     >
       <div className="wrapper">
         <div className="header">

@@ -206,7 +206,6 @@ body {
   display: flex;
   /* justify-content: space-evenly; */
   flex-wrap: wrap;
-  /* max-height: 260px; */
   overflow-x: auto;
   overflow-y: hidden;
   /* -ms-overflow-style: none; */
@@ -301,7 +300,7 @@ body {
   width: 100%;
   /* justify-content: space-around; */
   align-items: center;
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 .results-left {
