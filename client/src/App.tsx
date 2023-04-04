@@ -890,7 +890,7 @@ function App() {
             {" "}
           </a>
           <a
-            href="https://flipsidecrypto.xyz/"
+            href="https://www.keplr.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="footer-links"
