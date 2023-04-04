@@ -291,10 +291,6 @@ body {
   justify-content: space-between;
 }
 
-.res-header h2 {
-  margin-right: 50px;
-}
-
 .results-main {
   display: flex;
   width: 100%;
@@ -317,7 +313,7 @@ body {
 
 .results-right {
   /* background-color: blueviolet; */
-  width: 75%;
+  width: 80%;
   margin-left: 40px;
 }
 
@@ -381,7 +377,7 @@ body {
 }
 
 .turnout {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .tttt {
@@ -410,3 +406,23 @@ body {
     display: none;
   }
 }
+
+.tallybutton {
+  height: 40px;
+  width: 150px;
+  margin-bottom: 20px;
+  background-color: #140f34;
+  color: #ffffff;
+  font-size: large;
+  font-weight: bold;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.tallybutton:hover {
+  color: #025dff;
+}
+

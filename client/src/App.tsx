@@ -688,6 +688,51 @@ function App() {
     return totalPower;
   }
 
+  function tallycalc(): any {
+    const totalPowerYes = calculateTotalPower("containerYes");
+    const yesVotes = (totalPowerYes / Math.pow(10, 6)).toLocaleString(
+      undefined,
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    );
+    setSumYes(yesVotes);
+    const totalPowerNo = calculateTotalPower("containerNo");
+    const noVotes = (totalPowerNo / Math.pow(10, 6)).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    setSumNo(noVotes);
+    const totalPowerNwv = calculateTotalPower("containerNwv");
+    const nwvVotes = (totalPowerNwv / Math.pow(10, 6)).toLocaleString(
+      undefined,
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    );
+    setSumNwv(nwvVotes);
+    const totalPowerAbs = calculateTotalPower("containerAbs");
+    const absVotes = (totalPowerAbs / Math.pow(10, 6)).toLocaleString(
+      undefined,
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    );
+    setSumAbs(absVotes);
+    const totalVotesNumber =
+      totalPowerYes + totalPowerNo + totalPowerNwv + totalPowerAbs;
+    const totalVotesString = (
+      totalVotesNumber / Math.pow(10, 6)
+    ).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    setTotalVotes(totalVotesString);
+  }
+
   return (
     <DndContext
       sensors={sensors}
@@ -840,6 +885,9 @@ function App() {
               </div>
               <div className="results-right">
                 <div className="turnout">
+                  <button onClick={tallycalc} className="tallybutton">
+                    Tally Votes
+                  </button>
                   <h2>Turnout: {turnout}%</h2>
                   <h3>Quorum: {quorum} OSMO (20% of total stake)</h3>
                 </div>
@@ -886,8 +934,7 @@ function App() {
             className="footer-links"
           >
             {" "}
-            <img src={flipjawn} className="flipside-logo" alt="flipside" />
-            {" "}
+            <img src={flipjawn} className="flipside-logo" alt="flipside" />{" "}
           </a>
           <a
             href="https://www.keplr.app/"
