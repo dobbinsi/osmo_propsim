@@ -733,6 +733,10 @@ function App() {
     setTotalVotes(totalVotesString);
   }
 
+  function reload(): any {
+    window.location.reload();
+  }
+
   return (
     <DndContext
       sensors={sensors}
@@ -885,9 +889,14 @@ function App() {
               </div>
               <div className="results-right">
                 <div className="turnout">
-                  <button onClick={tallycalc} className="tallybutton">
-                    Tally Votes
-                  </button>
+                  <div>
+                    <button onClick={tallycalc} className="tallybutton">
+                      Tally Votes
+                    </button>
+                    <button onClick={reload} className="resetbutton">
+                      Reset Votes
+                    </button>
+                  </div>
                   <h2>Turnout: {turnout}%</h2>
                   <h3>Quorum: {quorum} OSMO (20% of total stake)</h3>
                 </div>

@@ -214,16 +214,19 @@ body {
   /* padding-bottom: 30px; */
   /* overflow: scroll; */
   padding-bottom: 10px;
+  cursor: pointer;
 }
 
 .valhouse::-webkit-scrollbar {
   background-color: transparent;
   height: 10px;
+  cursor: pointer;
 }
 
 .valhouse::-webkit-scrollbar-thumb {
   background-color: #025dff;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .val-container {
@@ -420,10 +423,28 @@ body {
   overflow: hidden;
   border-radius: 10px;
   border: 2px solid #8f82fb;
-  position: relative;
+  /* position: relative; */
 }
 
 .tallybutton:hover {
   color: #025dff;
 }
 
+.resetbutton {
+  height: 40px;
+  width: 150px;
+  margin-bottom: 20px;
+  background-color: #140f34;
+  color: #ffffff;
+  font-size: large;
+  font-weight: bold;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 2px solid #8f82fb;
+  margin-left: 20px;
+}
+
+.resetbutton:hover {
+  color: #025dff;
+}
