@@ -370,8 +370,9 @@ body {
 
 .tallyjawn {
   width: 22%;
+  background-color: #140f34;
   /* min-width: 240px; */
-  border: 2px solid #8f82fb;
+  border: 2px solid transparent;
   border-radius: 15px;
   padding: 10px;
 }
@@ -418,7 +419,7 @@ body {
   cursor: pointer;
   overflow: hidden;
   border-radius: 10px;
-  border: 2px solid transparent;
+  border: 2px solid #8f82fb;
   position: relative;
 }
 
