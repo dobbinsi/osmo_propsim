@@ -181,7 +181,6 @@ body {
 }
 
 .logo-footer {
-  margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -448,3 +447,45 @@ body {
 .resetbutton:hover {
   color: #025dff;
 }
+
+.footer {
+  position: relative;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-mode {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.party-desc {
+  height: 200px;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #28274f;
+  border-radius: 15px;
+}
+
+.party-desc h1 {
+  margin-bottom: 20px;
+}
+
+.desc-content {
+  display: flex;
+}
+
+.desc-desc {
+  width: 80%;
+}
+
+.desc-desc h3 {
+  font-weight: normal;
+}
+

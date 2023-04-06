@@ -23,6 +23,10 @@ import { Droppable } from "./components/Droppable";
 import { Chart as ChartJS, ArcElement, Title, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import DoughnutChart from "./components/DoughnutChart";
+import Footer from "./components/Footer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChartSimple } from "@fortawesome/free-solid-svg-icons";
+import Parties from "./components/Parties";
 
 function App() {
   const handleInitialZoom = () => {
@@ -53,6 +57,8 @@ function App() {
 
   const yesYes = (sumYesNum / (totalVotesNum - sumAbsNum)) * 100;
   const turnout = ((totalVotesNum / bondedTokensNum) * 100 || 0.0).toFixed(2);
+
+  const [partyView, setPartyView] = useState(false);
 
   const thumbnails: { [identity: string]: string } = {
     E5F274B870BDA01D:
@@ -737,7 +743,13 @@ function App() {
     window.location.reload();
   }
 
-  return (
+  const togglePartyView = () => {
+    setPartyView(!partyView);
+  };
+
+  return partyView ? (
+    <Parties partyView={partyView} togglePartyView={togglePartyView} />
+  ) : (
     <DndContext
       sensors={sensors}
       onDragOver={handleDragOver}
@@ -747,7 +759,16 @@ function App() {
       <div className="wrapper">
         <div className="header">
           <img src={osmo} className="logomain" alt="osmo" />
-          <h1 className="psim">Prop Simulator</h1>
+          <div className="title">
+            <h1 className="psim">Prop Simulator | </h1>
+            <FontAwesomeIcon
+              icon={faChartSimple}
+              color="#ffffff"
+              size="3x"
+              className="icon-mode"
+              onClick={togglePartyView}
+            />
+          </div>
         </div>
         <div className="main">
           <div className="top">
@@ -934,27 +955,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="logo-footer">
-          <h2 className="footer-bigtxt">Powered by</h2>
-          <a
-            href="https://flipsidecrypto.xyz/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-links"
-          >
-            {" "}
-            <img src={flipjawn} className="flipside-logo" alt="flipside" />{" "}
-          </a>
-          <a
-            href="https://www.keplr.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-links"
-          >
-            {" "}
-            <img src={keplr} className="keplr-logo" alt="keplr" />{" "}
-          </a>
-        </div>
+        <Footer />
       </div>
       <DragOverlay>
         {activeItem && (
