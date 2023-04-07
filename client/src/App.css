@@ -467,6 +467,7 @@ body {
 
 .party-desc {
   /* height: 200px; */
+  display: flex;
   margin-top: 50px;
   padding: 20px;
   background-color: #28274f;
@@ -529,6 +530,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .val-container2 {
@@ -564,11 +566,14 @@ body {
 
 .results2 {
   margin-top: 50px;
+  height: 450px;
   padding: 20px;
   background-color: #28274f;
   border-radius: 15px;
 }
 
-.results-main2 {
-  width: 100%;
+.chart-area {
+  width: 95%;
+  height: 100%;
+  margin: auto;
 }

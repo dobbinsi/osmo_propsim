@@ -49,28 +49,28 @@ interface Party {
 
 const partyList: Party[] = [
   {
-    name: "Interop Party",
+    name: "Anti-Inflation Party",
     description:
-      "Validators who consistently vote for proposals that aim to integrate Osmosis with other blockchain ecosystems or projects, such as adding support for new tokens, implementing cross-chain bridges, or collaborating with other DeFi platforms. These validators believe that fostering interoperability and collaboration with other projects is essential for driving adoption and expanding the reach of the Osmosis ecosystem.",
-    logo: faLink,
+      "Validators who regularly vote against proposals that could lead to higher token inflation rates or emission schedules. These validators are concerned about token dilution and its impact on the long-term value of OSMO tokens.",
+    logo: faFireFlameCurved,
+  },
+  {
+    name: "Astute Allocators",
+    description:
+      "Validators who consistently vote No or No With Veto on community pool spend proposals. These validators prioritize cautious and disciplined spending of community pool resources, emphasizing the importance of financial responsibility and sustainability. They tend to scrutinize community pool spending proposals carefully and may oppose initiatives they deem unnecessary or lacking in clear, long-term benefits for the Osmosis ecosystem.",
+    logo: faCommentsDollar,
+  },
+  {
+    name: "Builder Advocates",
+    description:
+      "Validators who consistently vote for proposals that support and empower developers and builders within the Osmosis ecosystem. These validators recognize the importance of fostering a robust developer community and the value that innovative projects bring to the platform. They actively support store code type proposals that enable the deployment of smart contracts or new decentralized applications, as well as initiatives that provide resources, funding, or tooling to help developers create and launch their projects on Osmosis.",
+    logo: faCode,
   },
   {
     name: "Community Pool Champions",
     description:
       "Validators who consistently vote in favor of community pool spend proposals, which allocate funds from the community pool for various purposes such as marketing, community events, or ecosystem development. These validators believe that investing in the growth of the community and ecosystem is vital for the long-term success of Osmosis.",
     logo: faHandHoldingDollar,
-  },
-  {
-    name: "Prudent Allocators",
-    description:
-      "Validators who consistently vote No or No With Veto on community pool spend proposals. These validators prioritize cautious and disciplined spending of community pool resources, emphasizing the importance of financial responsibility and sustainability. They tend to scrutinize community pool spending proposals carefully and may oppose initiatives they deem unnecessary or lacking in clear, long-term benefits for the Osmosis ecosystem.",
-    logo: faCommentsDollar,
-  },
-  {
-    name: "Incentive Strategists",
-    description:
-      "Validators who pay close attention to proposals related to updating pool incentives, such as adjusting the distribution of liquidity provider (LP) rewards, modifying swap fees, or introducing new incentive mechanisms. These validators often vote in favor of proposals that aim to optimize incentives to attract more users and liquidity to the platform.",
-    logo: faArrowsSpin,
   },
   {
     name: "Governance Reformers",
@@ -85,22 +85,22 @@ const partyList: Party[] = [
     logo: faShieldHalved,
   },
   {
-    name: "UX Advocates",
+    name: "Incentive Strategists",
+    description:
+      "Validators who pay close attention to proposals related to updating pool incentives, such as adjusting the distribution of liquidity provider (LP) rewards, modifying swap fees, or introducing new incentive mechanisms. These validators often vote in favor of proposals that aim to optimize incentives to attract more users and liquidity to the platform.",
+    logo: faArrowsSpin,
+  },
+  {
+    name: "Interop Party",
+    description:
+      "Validators who consistently vote for proposals that aim to integrate Osmosis with other blockchain ecosystems or projects, such as adding support for new tokens, implementing cross-chain bridges, or collaborating with other DeFi platforms. These validators believe that fostering interoperability and collaboration with other projects is essential for driving adoption and expanding the reach of the Osmosis ecosystem.",
+    logo: faLink,
+  },
+  {
+    name: "UX Alliance",
     description:
       "Validators who focus on voting for proposals that improve the user experience of the Osmosis platform, such as enhancements to the wallet interface, the addition of new trading pairs or liquidity pools, or improvements to the overall usability of the platform. These validators believe that a better user experience will drive increased adoption and usage of the Osmosis ecosystem.",
     logo: faUsersRectangle,
-  },
-  {
-    name: "Anti-Inflation Party",
-    description:
-      "Validators who regularly vote against proposals that could lead to higher token inflation rates or emission schedules. These validators are concerned about token dilution and its impact on the long-term value of OSMO tokens.",
-    logo: faFireFlameCurved,
-  },
-  {
-    name: "Builder Advocates",
-    description:
-      "Validators who consistently vote for proposals that support and empower developers and builders within the Osmosis ecosystem. These validators recognize the importance of fostering a robust developer community and the value that innovative projects bring to the platform. They actively support store code type proposals that enable the deployment of smart contracts or new decentralized applications, as well as initiatives that provide resources, funding, or tooling to help developers create and launch their projects on Osmosis.",
-    logo: faCode,
   },
   // Add more parties here with their descriptions and logos
 ];
@@ -108,6 +108,9 @@ const partyList: Party[] = [
 const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   const [selectedParty, setSelectedParty] = useState<Party>(partyList[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const arrowIconRef = useRef<HTMLSpanElement | null>(null);
 
   const handlePartyChange = (party: Party) => {
     setSelectedParty(party);
@@ -117,6 +120,29 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node) &&
+      arrowIconRef.current &&
+      !arrowIconRef.current.contains(event.target as Node)
+    ) {
+      setIsDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownOpen]);
 
   const [defData, setDefData] = React.useState<any>([]);
 
@@ -151,6 +177,8 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
 
   const chartOptions: ChartOptions<"bar"> = {
     responsive: true,
+    maintainAspectRatio: false,
+    resizeDelay: 100,
     scales: {
       x: {
         stacked: true,
@@ -198,6 +226,8 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
 
   const chartOptions2: ChartOptions<"bar"> = {
     responsive: true,
+    maintainAspectRatio: false,
+    resizeDelay: 100,
     scales: {
       x: {
         stacked: true,
@@ -250,7 +280,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         label: "Yes",
         data: chartData1Def,
         backgroundColor: "#055dff",
-        borderRadius: 10,
+        borderRadius: 8,
         // borderColor: ["#fff"],
         // borderWidth: 1.5,
       },
@@ -258,7 +288,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         label: "No",
         data: chartData2Def,
         backgroundColor: "#d630f7",
-        borderRadius: 10,
+        borderRadius: 8,
 
         // borderColor: ["#fff"],
         // borderWidth: 1.5,
@@ -267,7 +297,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         label: "Abstain",
         data: chartData3Def,
         backgroundColor: "#6161ab",
-        borderRadius: 10,
+        borderRadius: 8,
 
         // borderColor: ["#fff"],
         // borderWidth: 1.5,
@@ -306,17 +336,22 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
             <div className="desc-content">
               <div className="desc-desc">
                 <h1>
-                  {selectedParty.name}
-                  <FontAwesomeIcon
-                    icon={faCaretDown}
-                    color="#ffffff"
-                    size="lg"
-                    style={{ marginLeft: "1rem", cursor: "pointer" }}
-                    onClick={toggleDropdown}
-                  />
+                  <span style={{ cursor: "pointer" }} onClick={toggleDropdown}>
+                    {selectedParty.name}
+                  </span>
+                  <span ref={arrowIconRef}>
+                    <FontAwesomeIcon
+                      icon={faCaretDown}
+                      color="#ffffff"
+                      size="sm"
+                      style={{ marginLeft: "1rem", cursor: "pointer" }}
+                      onClick={toggleDropdown}
+                    />
+                  </span>
                 </h1>
                 {isDropdownOpen && (
                   <div
+                    ref={dropdownRef}
                     style={{
                       position: "absolute",
                       backgroundColor: "#ffffff",
@@ -424,12 +459,12 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
           </div>
         </div>
         <div className="results2">
-          <div className="results-main2">
+          <div className="chart-area">
             <Bar options={chartOptions} data={chartDataDef} />
           </div>
         </div>
         <div className="results2">
-          <div className="results-main2">
+          <div className="chart-area">
             <Bar options={chartOptions2} data={chartDataDef} />
           </div>
         </div>
