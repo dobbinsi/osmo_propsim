@@ -423,16 +423,16 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
                 )}
                 <div className="desc-border">
                   <h3>{selectedParty.description}</h3>
-                  <h4>{selectedParty.method1}</h4>
-                  <h4>
+                  <p>{selectedParty.method1}</p>
+                  <p>
                     Threshold:{" "}
                     <span className="threshold">{selectedParty.criteria1}</span>
-                  </h4>
-                  <h4>{selectedParty.method2}</h4>
-                  <h4>
+                  </p>
+                  <p>{selectedParty.method2}</p>
+                  <p>
                     Threshold:{" "}
                     <span className="threshold">{selectedParty.criteria2}</span>
-                  </h4>
+                  </p>
                 </div>
               </div>
               <div className="desc-box">
