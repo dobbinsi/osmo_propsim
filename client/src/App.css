@@ -490,6 +490,7 @@ body {
 .desc-desc h3 {
   font-weight: normal;
   text-align: justify;
+  margin-bottom: 20px;
 }
 
 .desc-box {
@@ -576,4 +577,8 @@ body {
   width: 95%;
   height: 100%;
   margin: auto;
+}
+
+.threshold {
+  color: #8f82fb;
 }
