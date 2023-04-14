@@ -24,7 +24,6 @@ import {
   CategoryScale,
   LinearScale,
   BarElement,
-  PointElement,
   Title,
   Tooltip,
   Legend,
@@ -254,6 +253,16 @@ interface Party {
   method2: string;
   criteria2: string;
   logo: any;
+}
+
+interface BarChartData {
+  labels: string[];
+  datasets: {
+    label: string;
+    data: number[];
+    backgroundColor: string;
+    borderRadius: number;
+  }[];
 }
 
 const partyList: Party[] = [
@@ -1145,7 +1154,31 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   }, [vJawns]);
 
   const chartOptions: ChartOptions<"bar"> = {
-    // responsive: true,
+    plugins: {
+      tooltip: {
+        enabled: false,
+      },
+      legend: {
+        position: "bottom",
+        labels: {
+          color: "#fff",
+        },
+      },
+      title: {
+        display: true,
+        text: "Signal Strength (% Votes)",
+        font: {
+          size: 20,
+          family: "'Poppins', sans-serif",
+        },
+        color: "#fff",
+        padding: {
+          top: 20,
+          bottom: 50,
+        },
+      },
+    },
+    responsive: true,
     maintainAspectRatio: false,
     resizeDelay: 100,
     scales: {
@@ -1174,30 +1207,9 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         },
       },
     },
-    plugins: {
-      legend: {
-        position: "bottom",
-        labels: {
-          color: "#fff",
-        },
-      },
-      title: {
-        display: true,
-        text: "Signal Strength (% Votes)",
-        font: {
-          size: 20,
-          family: "'Poppins', sans-serif",
-        },
-        color: "#fff",
-        padding: {
-          top: 20,
-          bottom: 50,
-        },
-      },
-    },
   };
 
-  const chartDataParty1 = {
+  const chartDataParty1: BarChartData = {
     labels: chartLabels1,
     datasets: [
       {
@@ -1215,7 +1227,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     ],
   };
 
-  const chartDataParty2 = {
+  const chartDataParty2: BarChartData = {
     labels: chartLabels2,
     datasets: [
       {
@@ -1233,7 +1245,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     ],
   };
 
-  const chartDataParty3 = {
+  const chartDataParty3: BarChartData = {
     labels: chartLabels3,
     datasets: [
       {
@@ -1251,7 +1263,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     ],
   };
 
-  const chartDataParty4 = {
+  const chartDataParty4: BarChartData = {
     labels: chartLabels4,
     datasets: [
       {
@@ -1269,7 +1281,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     ],
   };
 
-  const chartDataParty5 = {
+  const chartDataParty5: BarChartData = {
     labels: chartLabels5,
     datasets: [
       {
@@ -1287,7 +1299,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     ],
   };
 
-  const chartDataParty6 = {
+  const chartDataParty6: BarChartData = {
     labels: chartLabels6,
     datasets: [
       {
@@ -1305,7 +1317,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     ],
   };
 
-  const chartDataParty7 = {
+  const chartDataParty7: BarChartData = {
     labels: chartLabels7,
     datasets: [
       {
@@ -1323,7 +1335,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     ],
   };
 
-  const chartDataParty8 = {
+  const chartDataParty8: BarChartData = {
     labels: chartLabels8,
     datasets: [
       {
@@ -1341,7 +1353,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     ],
   };
 
-  const chartDataParty9 = {
+  const chartDataParty9: BarChartData = {
     labels: chartLabels9,
     datasets: [
       {
@@ -1390,7 +1402,6 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     CategoryScale,
     LinearScale,
     BarElement,
-    PointElement,
     Title,
     Tooltip,
     Legend
@@ -1503,7 +1514,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
                     />
                   </div>
                   <div className="name-box2">
-                    <h4>{truncateName(item.VALIDATOR_NAME, 25)}</h4>
+                    <h3>{truncateName(item.VALIDATOR_NAME, 20)}</h3>
                   </div>
                 </div>
               ))}
@@ -1512,7 +1523,11 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         </div>
         <div className="results2">
           <div className="chart-area">
-            <Bar options={chartOptions} data={chartData} />
+            <Bar
+              options={chartOptions}
+              data={chartData}
+              style={{ position: "relative" }}
+            />
           </div>
         </div>
       </div>
