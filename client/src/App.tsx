@@ -586,6 +586,7 @@ function App() {
             };
           }
         );
+        console.log(combinedArray);
         setVjawns(combinedArray);
         setDraggables(combinedArray);
       })
