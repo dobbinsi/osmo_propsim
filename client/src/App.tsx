@@ -224,7 +224,7 @@ function App() {
     "216E0EE1BA80B5F8":
       "https://s3.amazonaws.com/keybase_processed_uploads/c6f6faf5d7039892c4140877189ade05_360_360.jpg",
     "87D9921253A2A9EB":
-      "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper18m4wkxw865cmxu7wv43pk9wgssw022kjyxz6wz.png",
+      "https://www.a41.io/_next/image?url=https%3A%2F%2Fa41-web-static.s3.ap-northeast-2.amazonaws.com%2Fpublic%2Fimgs%2Fa41_logo_steel.png&w=1920&q=75",
     FEF740F1760E1B56:
       "https://s3.amazonaws.com/keybase_processed_uploads/085d09c506dceeb931a504f249736705_360_360.jpg",
     "9203983F91296B66":
@@ -429,6 +429,14 @@ function App() {
       "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F1db7b1f4f2030c71264fb76507a09a05_360_360.jpg&w=128&q=75",
     "357F80896B3311B4":
       "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F627921d6ba4c1f941d0a12b015a2bc05_360_360.jpg&w=128&q=75",
+    "84D5F4CF21FBF123":
+      "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2Fd2b22684de5f464da40742f84b737905_360_360.jpg&w=64&q=75",
+    "3820B9E30B3BD99E":
+      "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2Ff0238d018c8256e54e8109406786e505_360_360.jpg&w=64&q=75",
+    "9E31CFA37DA22B31":
+      "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1knn0dpjfukmq97yz09uqt80896gwg0rfv6jtvp.png",
+    "9B2EB22C7DAC8684":
+      "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper183psjr4y05kwtpfew073q6hm84xdhp9tcn8ne7.png",
   };
 
   const partChartData = {

@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
       <div className="logo-footer">
         <h2 className="footer-bigtxt">Powered by</h2>
         <a
-          href="https://flipsidecrypto.xyz/"
+          href="https://flipsidecrypto.xyz/d0bby/osmosis-political-parties-validators-ZJKQBH"
           target="_blank"
           rel="noopener noreferrer"
           className="footer-links"

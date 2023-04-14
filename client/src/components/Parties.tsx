@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../App.css";
 import osmo from "../logos/osmologo.svg";
+import valFallback from "../logos/validator_fallback.svg";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import Footer from "./Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -566,7 +567,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     "216E0EE1BA80B5F8":
       "https://s3.amazonaws.com/keybase_processed_uploads/c6f6faf5d7039892c4140877189ade05_360_360.jpg",
     "87D9921253A2A9EB":
-      "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper18m4wkxw865cmxu7wv43pk9wgssw022kjyxz6wz.png",
+      "https://www.a41.io/_next/image?url=https%3A%2F%2Fa41-web-static.s3.ap-northeast-2.amazonaws.com%2Fpublic%2Fimgs%2Fa41_logo_steel.png&w=1920&q=75",
     FEF740F1760E1B56:
       "https://s3.amazonaws.com/keybase_processed_uploads/085d09c506dceeb931a504f249736705_360_360.jpg",
     "9203983F91296B66":
@@ -771,10 +772,18 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
       "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F1db7b1f4f2030c71264fb76507a09a05_360_360.jpg&w=128&q=75",
     "357F80896B3311B4":
       "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F627921d6ba4c1f941d0a12b015a2bc05_360_360.jpg&w=128&q=75",
+    "84D5F4CF21FBF123":
+      "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2Fd2b22684de5f464da40742f84b737905_360_360.jpg&w=64&q=75",
+    "3820B9E30B3BD99E":
+      "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2Ff0238d018c8256e54e8109406786e505_360_360.jpg&w=64&q=75",
+    "9E31CFA37DA22B31":
+      "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1knn0dpjfukmq97yz09uqt80896gwg0rfv6jtvp.png",
+    "9B2EB22C7DAC8684":
+      "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper183psjr4y05kwtpfew073q6hm84xdhp9tcn8ne7.png",
   };
 
   const chartLabels1 = aifData.map((item: { [x: string]: any }) => {
-    return item["VALIDATOR_NAME"];
+    return truncateName(item["VALIDATOR_NAME"], 10);
   });
 
   const chartData1 = aifData.map((item: { [x: string]: any }) => {
@@ -786,7 +795,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   });
 
   const chartLabels2 = aaData.map((item: { [x: string]: any }) => {
-    return item["VALIDATOR_NAME"];
+    return truncateName(item["VALIDATOR_NAME"], 10);
   });
 
   const chartData2 = aaData.map((item: { [x: string]: any }) => {
@@ -798,7 +807,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   });
 
   const chartLabels3 = baData.map((item: { [x: string]: any }) => {
-    return item["VALIDATOR_NAME"];
+    return truncateName(item["VALIDATOR_NAME"], 10);
   });
 
   const chartData3 = baData.map((item: { [x: string]: any }) => {
@@ -810,7 +819,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   });
 
   const chartLabels4 = cpcData.map((item: { [x: string]: any }) => {
-    return item["VALIDATOR_NAME"];
+    return truncateName(item["VALIDATOR_NAME"], 10);
   });
 
   const chartData4 = cpcData.map((item: { [x: string]: any }) => {
@@ -822,7 +831,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   });
 
   const chartLabels5 = grData.map((item: { [x: string]: any }) => {
-    return item["VALIDATOR_NAME"];
+    return truncateName(item["VALIDATOR_NAME"], 10);
   });
 
   const chartData5 = grData.map((item: { [x: string]: any }) => {
@@ -834,7 +843,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   });
 
   const chartLabels6 = gopData.map((item: { [x: string]: any }) => {
-    return item["VALIDATOR_NAME"];
+    return truncateName(item["VALIDATOR_NAME"], 10);
   });
 
   const chartData6 = gopData.map((item: { [x: string]: any }) => {
@@ -846,7 +855,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   });
 
   const chartLabels7 = isData.map((item: { [x: string]: any }) => {
-    return item["VALIDATOR_NAME"];
+    return truncateName(item["VALIDATOR_NAME"], 10);
   });
 
   const chartData7 = isData.map((item: { [x: string]: any }) => {
@@ -858,7 +867,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   });
 
   const chartLabels8 = iopData.map((item: { [x: string]: any }) => {
-    return item["VALIDATOR_NAME"];
+    return truncateName(item["VALIDATOR_NAME"], 10);
   });
 
   const chartData8 = iopData.map((item: { [x: string]: any }) => {
@@ -870,7 +879,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   });
 
   const chartLabels9 = uxaData.map((item: { [x: string]: any }) => {
-    return item["VALIDATOR_NAME"];
+    return truncateName(item["VALIDATOR_NAME"], 10);
   });
 
   const chartData9 = uxaData.map((item: { [x: string]: any }) => {
@@ -1136,7 +1145,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   }, [vJawns]);
 
   const chartOptions: ChartOptions<"bar"> = {
-    responsive: true,
+    // responsive: true,
     maintainAspectRatio: false,
     resizeDelay: 100,
     scales: {
@@ -1387,6 +1396,10 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     Legend
   );
 
+  function truncateName(name: string, maxLength: number): string {
+    return name.length > maxLength ? name.slice(0, maxLength) : name;
+  }
+
   return (
     <div className="wrapper">
       <div className="header">
@@ -1483,10 +1496,14 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
               {data.map((item) => (
                 <div className="val-container2">
                   <div className="logo-box2">
-                    <img src={item.thumbnail} className="vlogo2" alt="logo" />
+                    <img
+                      src={item.thumbnail || valFallback}
+                      className="vlogo2"
+                      alt="logo"
+                    />
                   </div>
                   <div className="name-box2">
-                    <h2>{item.VALIDATOR_NAME}</h2>
+                    <h4>{truncateName(item.VALIDATOR_NAME, 25)}</h4>
                   </div>
                 </div>
               ))}
