@@ -17,7 +17,6 @@ import {
   faCode,
   faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
-import fscube from "../logos/fscubewhite.png";
 
 import {
   Chart as ChartJS,
@@ -37,9 +36,6 @@ interface partyViewProps {
   togglePartyView: () => void;
 }
 
-interface DefResponse {
-  data: any;
-}
 interface AIFResponse {
   data: AifItem[];
 }
@@ -65,28 +61,146 @@ interface AifItem {
 }
 
 interface AAResponse {
-  data: any;
+  data: AaItem[];
 }
+interface AaItem {
+  ADDRESS: string;
+  ANTI_PERCENTAGE: number;
+  NUM_PROPS: number;
+  NUM_PROPS_VAL: number;
+  NUM_VOTES: number;
+  PERCENTAGE: number;
+  VALIDATOR_NAME: string;
+  VAL_ANTI_PERCENTAGE: number;
+  VAL_PERCENTAGE: number;
+  VOTER: string;
+  thumbnail?: string;
+}
+
 interface BAResponse {
-  data: any;
+  data: BaItem[];
 }
+interface BaItem {
+  ADDRESS: string;
+  ANTI_PERCENTAGE: number;
+  NUM_PROPS: number;
+  NUM_PROPS_VAL: number;
+  NUM_VOTES: number;
+  PERCENTAGE: number;
+  VALIDATOR_NAME: string;
+  VAL_ANTI_PERCENTAGE: number;
+  VAL_PERCENTAGE: number;
+  VOTER: string;
+  thumbnail?: string;
+}
+
 interface CPCResponse {
-  data: any;
+  data: CpcItem[];
 }
+interface CpcItem {
+  ADDRESS: string;
+  ANTI_PERCENTAGE: number;
+  NUM_PROPS: number;
+  NUM_PROPS_VAL: number;
+  NUM_VOTES: number;
+  PERCENTAGE: number;
+  VALIDATOR_NAME: string;
+  VAL_ANTI_PERCENTAGE: number;
+  VAL_PERCENTAGE: number;
+  VOTER: string;
+  thumbnail?: string;
+}
+
 interface GRResponse {
-  data: any;
+  data: GrItem[];
 }
+interface GrItem {
+  ADDRESS: string;
+  ANTI_PERCENTAGE: number;
+  NUM_PROPS: number;
+  NUM_PROPS_VAL: number;
+  NUM_VOTES: number;
+  PERCENTAGE: number;
+  VALIDATOR_NAME: string;
+  VAL_ANTI_PERCENTAGE: number;
+  VAL_PERCENTAGE: number;
+  VOTER: string;
+  thumbnail?: string;
+}
+
 interface GOPResponse {
-  data: any;
+  data: GopItem[];
 }
+interface GopItem {
+  ADDRESS: string;
+  ANTI_PERCENTAGE_WHITELIST: number;
+  ANTI_PERCENTAGE_VALIDATOR: number;
+  NUM_PROPS_WHITELIST: number;
+  NUM_PROPS_VALIDATOR: number;
+  NUM_PROPS_VAL_WHITELIST: number;
+  NUM_PROPS_VAL_VALIDATOR: number;
+  NUM_VOTES_WHITELIST: number;
+  NUM_VOTES_VALIDATOR: number;
+  PERCENTAGE_WHITELIST: number;
+  PERCENTAGE_VALIDATOR: number;
+  VALIDATOR_NAME: string;
+  VAL_ANTI_PERCENTAGE_WHITELIST: number;
+  VAL_ANTI_PERCENTAGE_VALIDATOR: number;
+  VAL_PERCENTAGE_WHITELIST: number;
+  VAL_PERCENTAGE_VALIDATOR: number;
+  VOTER: string;
+  thumbnail?: string;
+}
+
 interface ISResponse {
-  data: any;
+  data: IsItem[];
 }
+interface IsItem {
+  ADDRESS: string;
+  ANTI_PERCENTAGE: number;
+  NUM_PROPS: number;
+  NUM_PROPS_VAL: number;
+  NUM_VOTES: number;
+  PERCENTAGE: number;
+  VALIDATOR_NAME: string;
+  VAL_ANTI_PERCENTAGE: number;
+  VAL_PERCENTAGE: number;
+  VOTER: string;
+  thumbnail?: string;
+}
+
 interface IOPResponse {
-  data: any;
+  data: IopItem[];
 }
+interface IopItem {
+  ADDRESS: string;
+  ANTI_PERCENTAGE: number;
+  NUM_PROPS: number;
+  NUM_PROPS_VAL: number;
+  NUM_VOTES: number;
+  PERCENTAGE: number;
+  VALIDATOR_NAME: string;
+  VAL_ANTI_PERCENTAGE: number;
+  VAL_PERCENTAGE: number;
+  VOTER: string;
+  thumbnail?: string;
+}
+
 interface UXAResponse {
-  data: any;
+  data: UxaItem[];
+}
+interface UxaItem {
+  ADDRESS: string;
+  ANTI_PERCENTAGE: number;
+  NUM_PROPS: number;
+  NUM_PROPS_VAL: number;
+  NUM_VOTES: number;
+  PERCENTAGE: number;
+  VALIDATOR_NAME: string;
+  VAL_ANTI_PERCENTAGE: number;
+  VAL_PERCENTAGE: number;
+  VOTER: string;
+  thumbnail?: string;
 }
 
 interface ValidatorResponse {
@@ -236,7 +350,6 @@ const partyList: Party[] = [
     criteria2: "75%",
     logo: faUsersRectangle,
   },
-  // Add more parties here with their descriptions and logos
 ];
 
 const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
@@ -278,17 +391,16 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     };
   }, [isDropdownOpen]);
 
-  const [defData, setDefData] = React.useState<any>([]);
   const [vJawns, setVjawns] = React.useState<ValidatorWithThumbnail[]>([]);
   const [aifData, setAifData] = React.useState<AifItem[]>([]);
-  const [aaData, setAaData] = React.useState<any>([]);
-  const [baData, setBaData] = React.useState<any>([]);
-  const [cpcData, setCpcData] = React.useState<any>([]);
-  const [grData, setGrData] = React.useState<any>([]);
-  const [gopData, setGopData] = React.useState<any>([]);
-  const [isData, setIsData] = React.useState<any>([]);
-  const [iopData, setIopData] = React.useState<any>([]);
-  const [uxaData, setUxaData] = React.useState<any>([]);
+  const [aaData, setAaData] = React.useState<AaItem[]>([]);
+  const [baData, setBaData] = React.useState<BaItem[]>([]);
+  const [cpcData, setCpcData] = React.useState<CpcItem[]>([]);
+  const [grData, setGrData] = React.useState<GrItem[]>([]);
+  const [gopData, setGopData] = React.useState<GopItem[]>([]);
+  const [isData, setIsData] = React.useState<IsItem[]>([]);
+  const [iopData, setIopData] = React.useState<IopItem[]>([]);
+  const [uxaData, setUxaData] = React.useState<UxaItem[]>([]);
 
   const thumbnails: { [identity: string]: string } = {
     E5F274B870BDA01D:
@@ -673,6 +785,102 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     return item["VAL_ANTI_PERCENTAGE_MATCH"];
   });
 
+  const chartLabels2 = aaData.map((item: { [x: string]: any }) => {
+    return item["VALIDATOR_NAME"];
+  });
+
+  const chartData2 = aaData.map((item: { [x: string]: any }) => {
+    return item["VAL_PERCENTAGE"];
+  });
+
+  const chartData2Anti = aaData.map((item: { [x: string]: any }) => {
+    return item["VAL_ANTI_PERCENTAGE"];
+  });
+
+  const chartLabels3 = baData.map((item: { [x: string]: any }) => {
+    return item["VALIDATOR_NAME"];
+  });
+
+  const chartData3 = baData.map((item: { [x: string]: any }) => {
+    return item["VAL_PERCENTAGE"];
+  });
+
+  const chartData3Anti = baData.map((item: { [x: string]: any }) => {
+    return item["VAL_ANTI_PERCENTAGE"];
+  });
+
+  const chartLabels4 = cpcData.map((item: { [x: string]: any }) => {
+    return item["VALIDATOR_NAME"];
+  });
+
+  const chartData4 = cpcData.map((item: { [x: string]: any }) => {
+    return item["VAL_PERCENTAGE"];
+  });
+
+  const chartData4Anti = cpcData.map((item: { [x: string]: any }) => {
+    return item["VAL_ANTI_PERCENTAGE"];
+  });
+
+  const chartLabels5 = grData.map((item: { [x: string]: any }) => {
+    return item["VALIDATOR_NAME"];
+  });
+
+  const chartData5 = grData.map((item: { [x: string]: any }) => {
+    return item["VAL_PERCENTAGE"];
+  });
+
+  const chartData5Anti = grData.map((item: { [x: string]: any }) => {
+    return item["VAL_ANTI_PERCENTAGE"];
+  });
+
+  const chartLabels6 = gopData.map((item: { [x: string]: any }) => {
+    return item["VALIDATOR_NAME"];
+  });
+
+  const chartData6 = gopData.map((item: { [x: string]: any }) => {
+    return item["VAL_PERCENTAGE_WHITELIST"];
+  });
+
+  const chartData6Anti = gopData.map((item: { [x: string]: any }) => {
+    return item["VAL_ANTI_PERCENTAGE_WHITELIST"];
+  });
+
+  const chartLabels7 = isData.map((item: { [x: string]: any }) => {
+    return item["VALIDATOR_NAME"];
+  });
+
+  const chartData7 = isData.map((item: { [x: string]: any }) => {
+    return item["VAL_PERCENTAGE"];
+  });
+
+  const chartData7Anti = isData.map((item: { [x: string]: any }) => {
+    return item["VAL_ANTI_PERCENTAGE"];
+  });
+
+  const chartLabels8 = iopData.map((item: { [x: string]: any }) => {
+    return item["VALIDATOR_NAME"];
+  });
+
+  const chartData8 = iopData.map((item: { [x: string]: any }) => {
+    return item["VAL_PERCENTAGE"];
+  });
+
+  const chartData8Anti = iopData.map((item: { [x: string]: any }) => {
+    return item["VAL_ANTI_PERCENTAGE"];
+  });
+
+  const chartLabels9 = uxaData.map((item: { [x: string]: any }) => {
+    return item["VALIDATOR_NAME"];
+  });
+
+  const chartData9 = uxaData.map((item: { [x: string]: any }) => {
+    return item["VAL_PERCENTAGE"];
+  });
+
+  const chartData9Anti = uxaData.map((item: { [x: string]: any }) => {
+    return item["VAL_ANTI_PERCENTAGE"];
+  });
+
   useEffect(() => {
     axios
       .get<ValidatorResponse>(
@@ -706,19 +914,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
             };
           }
         );
-        console.log(combinedArray);
         setVjawns(combinedArray);
-      })
-      .catch((err: AxiosError) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get<DefResponse>(
-        "https://node-api.flipsidecrypto.com/api/v2/queries/affcf9aa-cde0-45e7-9090-a5d90d276f93/data/latest"
-      )
-      .then((res: AxiosResponse<DefResponse>) => {
-        setDefData(res.data);
       })
       .catch((err: AxiosError) => console.log(err));
   }, []);
@@ -739,7 +935,6 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
             }
             return aifItem;
           });
-          console.log(aifDataWithThumbnails);
           setAifData(aifDataWithThumbnails);
         } else {
           console.error("Unexpected response format:", res.data);
@@ -754,10 +949,23 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         "https://api.flipsidecrypto.com/api/v2/queries/64a72300-c19d-49e8-88fa-d6e95f9c26ba/data/latest"
       )
       .then((res: AxiosResponse<AAResponse>) => {
-        setAaData(res.data);
+        if (Array.isArray(res.data)) {
+          const aaDataWithThumbnails = res.data.map((aaItem: AaItem) => {
+            const correspondingVJawn = vJawns.find(
+              (vJawn) => vJawn.operator_address === aaItem.ADDRESS
+            );
+            if (correspondingVJawn) {
+              return { ...aaItem, thumbnail: correspondingVJawn.thumbnail };
+            }
+            return aaItem;
+          });
+          setAaData(aaDataWithThumbnails);
+        } else {
+          console.error("Unexpected response format:", res.data);
+        }
       })
       .catch((err: AxiosError) => console.log(err));
-  }, []);
+  }, [vJawns]);
 
   useEffect(() => {
     axios
@@ -765,10 +973,23 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         "https://api.flipsidecrypto.com/api/v2/queries/17f92331-68a4-490b-ad73-4e624ee3e425/data/latest"
       )
       .then((res: AxiosResponse<BAResponse>) => {
-        setBaData(res.data);
+        if (Array.isArray(res.data)) {
+          const baDataWithThumbnails = res.data.map((baItem: BaItem) => {
+            const correspondingVJawn = vJawns.find(
+              (vJawn) => vJawn.operator_address === baItem.ADDRESS
+            );
+            if (correspondingVJawn) {
+              return { ...baItem, thumbnail: correspondingVJawn.thumbnail };
+            }
+            return baItem;
+          });
+          setBaData(baDataWithThumbnails);
+        } else {
+          console.error("Unexpected response format:", res.data);
+        }
       })
       .catch((err: AxiosError) => console.log(err));
-  }, []);
+  }, [vJawns]);
 
   useEffect(() => {
     axios
@@ -776,10 +997,23 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         "https://api.flipsidecrypto.com/api/v2/queries/41d87923-6e37-4dbc-b4d5-35340aa27946/data/latest"
       )
       .then((res: AxiosResponse<CPCResponse>) => {
-        setCpcData(res.data);
+        if (Array.isArray(res.data)) {
+          const cpcDataWithThumbnails = res.data.map((cpcItem: CpcItem) => {
+            const correspondingVJawn = vJawns.find(
+              (vJawn) => vJawn.operator_address === cpcItem.ADDRESS
+            );
+            if (correspondingVJawn) {
+              return { ...cpcItem, thumbnail: correspondingVJawn.thumbnail };
+            }
+            return cpcItem;
+          });
+          setCpcData(cpcDataWithThumbnails);
+        } else {
+          console.error("Unexpected response format:", res.data);
+        }
       })
       .catch((err: AxiosError) => console.log(err));
-  }, []);
+  }, [vJawns]);
 
   useEffect(() => {
     axios
@@ -787,10 +1021,23 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         "https://api.flipsidecrypto.com/api/v2/queries/2bd6ba64-1b2a-45f0-bf6f-e13426600598/data/latest"
       )
       .then((res: AxiosResponse<GRResponse>) => {
-        setGrData(res.data);
+        if (Array.isArray(res.data)) {
+          const grDataWithThumbnails = res.data.map((grItem: GrItem) => {
+            const correspondingVJawn = vJawns.find(
+              (vJawn) => vJawn.operator_address === grItem.ADDRESS
+            );
+            if (correspondingVJawn) {
+              return { ...grItem, thumbnail: correspondingVJawn.thumbnail };
+            }
+            return grItem;
+          });
+          setGrData(grDataWithThumbnails);
+        } else {
+          console.error("Unexpected response format:", res.data);
+        }
       })
       .catch((err: AxiosError) => console.log(err));
-  }, []);
+  }, [vJawns]);
 
   useEffect(() => {
     axios
@@ -798,10 +1045,23 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         "https://api.flipsidecrypto.com/api/v2/queries/afd2ff66-afec-442a-b708-ddb0cc74dd51/data/latest"
       )
       .then((res: AxiosResponse<GOPResponse>) => {
-        setGopData(res.data);
+        if (Array.isArray(res.data)) {
+          const gopDataWithThumbnails = res.data.map((gopItem: GopItem) => {
+            const correspondingVJawn = vJawns.find(
+              (vJawn) => vJawn.operator_address === gopItem.ADDRESS
+            );
+            if (correspondingVJawn) {
+              return { ...gopItem, thumbnail: correspondingVJawn.thumbnail };
+            }
+            return gopItem;
+          });
+          setGopData(gopDataWithThumbnails);
+        } else {
+          console.error("Unexpected response format:", res.data);
+        }
       })
       .catch((err: AxiosError) => console.log(err));
-  }, []);
+  }, [vJawns]);
 
   useEffect(() => {
     axios
@@ -809,10 +1069,23 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         "https://api.flipsidecrypto.com/api/v2/queries/c5aea0ca-aee4-4d3e-b028-020a29840898/data/latest"
       )
       .then((res: AxiosResponse<ISResponse>) => {
-        setIsData(res.data);
+        if (Array.isArray(res.data)) {
+          const isDataWithThumbnails = res.data.map((isItem: IsItem) => {
+            const correspondingVJawn = vJawns.find(
+              (vJawn) => vJawn.operator_address === isItem.ADDRESS
+            );
+            if (correspondingVJawn) {
+              return { ...isItem, thumbnail: correspondingVJawn.thumbnail };
+            }
+            return isItem;
+          });
+          setIsData(isDataWithThumbnails);
+        } else {
+          console.error("Unexpected response format:", res.data);
+        }
       })
       .catch((err: AxiosError) => console.log(err));
-  }, []);
+  }, [vJawns]);
 
   useEffect(() => {
     axios
@@ -820,10 +1093,23 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         "https://api.flipsidecrypto.com/api/v2/queries/b2db6fa2-6d7e-4c5a-b3f5-da1042e275e4/data/latest"
       )
       .then((res: AxiosResponse<IOPResponse>) => {
-        setIopData(res.data);
+        if (Array.isArray(res.data)) {
+          const iopDataWithThumbnails = res.data.map((iopItem: IopItem) => {
+            const correspondingVJawn = vJawns.find(
+              (vJawn) => vJawn.operator_address === iopItem.ADDRESS
+            );
+            if (correspondingVJawn) {
+              return { ...iopItem, thumbnail: correspondingVJawn.thumbnail };
+            }
+            return iopItem;
+          });
+          setIopData(iopDataWithThumbnails);
+        } else {
+          console.error("Unexpected response format:", res.data);
+        }
       })
       .catch((err: AxiosError) => console.log(err));
-  }, []);
+  }, [vJawns]);
 
   useEffect(() => {
     axios
@@ -831,10 +1117,23 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         "https://api.flipsidecrypto.com/api/v2/queries/a8a073ed-5874-4cf8-a8a1-c591b9c5dddb/data/latest"
       )
       .then((res: AxiosResponse<UXAResponse>) => {
-        setUxaData(res.data);
+        if (Array.isArray(res.data)) {
+          const uxaDataWithThumbnails = res.data.map((uxaItem: UxaItem) => {
+            const correspondingVJawn = vJawns.find(
+              (vJawn) => vJawn.operator_address === uxaItem.ADDRESS
+            );
+            if (correspondingVJawn) {
+              return { ...uxaItem, thumbnail: correspondingVJawn.thumbnail };
+            }
+            return uxaItem;
+          });
+          setUxaData(uxaDataWithThumbnails);
+        } else {
+          console.error("Unexpected response format:", res.data);
+        }
       })
       .catch((err: AxiosError) => console.log(err));
-  }, []);
+  }, [vJawns]);
 
   const chartOptions: ChartOptions<"bar"> = {
     responsive: true,
@@ -883,7 +1182,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         color: "#fff",
         padding: {
           top: 20,
-          bottom: 50, // Add 50px of padding to the bottom of the title
+          bottom: 50,
         },
       },
     },
@@ -897,20 +1196,315 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         data: chartData1,
         backgroundColor: "#055dff",
         borderRadius: 8,
-        // borderColor: ["#fff"],
-        // borderWidth: 1.5,
       },
       {
         label: "Not Aligned with Party",
         data: chartData1Anti,
         backgroundColor: "#d630f7",
         borderRadius: 8,
-
-        // borderColor: ["#fff"],
-        // borderWidth: 1.5,
       },
     ],
   };
+
+  const chartDataParty2 = {
+    labels: chartLabels2,
+    datasets: [
+      {
+        label: "Aligned with Party",
+        data: chartData2,
+        backgroundColor: "#055dff",
+        borderRadius: 8,
+      },
+      {
+        label: "Not Aligned with Party",
+        data: chartData2Anti,
+        backgroundColor: "#d630f7",
+        borderRadius: 8,
+      },
+    ],
+  };
+
+  const chartDataParty3 = {
+    labels: chartLabels3,
+    datasets: [
+      {
+        label: "Aligned with Party",
+        data: chartData3,
+        backgroundColor: "#055dff",
+        borderRadius: 8,
+      },
+      {
+        label: "Not Aligned with Party",
+        data: chartData3Anti,
+        backgroundColor: "#d630f7",
+        borderRadius: 8,
+      },
+    ],
+  };
+
+  const chartDataParty4 = {
+    labels: chartLabels4,
+    datasets: [
+      {
+        label: "Aligned with Party",
+        data: chartData4,
+        backgroundColor: "#055dff",
+        borderRadius: 8,
+      },
+      {
+        label: "Not Aligned with Party",
+        data: chartData4Anti,
+        backgroundColor: "#d630f7",
+        borderRadius: 8,
+      },
+    ],
+  };
+
+  const chartDataParty5 = {
+    labels: chartLabels5,
+    datasets: [
+      {
+        label: "Aligned with Party",
+        data: chartData5,
+        backgroundColor: "#055dff",
+        borderRadius: 8,
+      },
+      {
+        label: "Not Aligned with Party",
+        data: chartData5Anti,
+        backgroundColor: "#d630f7",
+        borderRadius: 8,
+      },
+    ],
+  };
+
+  const chartDataParty6 = {
+    labels: chartLabels6,
+    datasets: [
+      {
+        label: "Aligned with Party",
+        data: chartData6,
+        backgroundColor: "#055dff",
+        borderRadius: 8,
+      },
+      {
+        label: "Not Aligned with Party",
+        data: chartData6Anti,
+        backgroundColor: "#d630f7",
+        borderRadius: 8,
+      },
+    ],
+  };
+
+  const chartDataParty7 = {
+    labels: chartLabels7,
+    datasets: [
+      {
+        label: "Aligned with Party",
+        data: chartData7,
+        backgroundColor: "#055dff",
+        borderRadius: 8,
+      },
+      {
+        label: "Not Aligned with Party",
+        data: chartData7Anti,
+        backgroundColor: "#d630f7",
+        borderRadius: 8,
+      },
+    ],
+  };
+
+  const chartDataParty8 = {
+    labels: chartLabels8,
+    datasets: [
+      {
+        label: "Aligned with Party",
+        data: chartData8,
+        backgroundColor: "#055dff",
+        borderRadius: 8,
+      },
+      {
+        label: "Not Aligned with Party",
+        data: chartData8Anti,
+        backgroundColor: "#d630f7",
+        borderRadius: 8,
+      },
+    ],
+  };
+
+  const chartDataParty9 = {
+    labels: chartLabels9,
+    datasets: [
+      {
+        label: "Aligned with Party",
+        data: chartData9,
+        backgroundColor: "#055dff",
+        borderRadius: 8,
+      },
+      {
+        label: "Not Aligned with Party",
+        data: chartData9Anti,
+        backgroundColor: "#d630f7",
+        borderRadius: 8,
+      },
+    ],
+  };
+
+  const getPartyData = (partyName: string) => {
+    switch (partyName) {
+      case "Anti-Inflation Party":
+        return { data: aifData, chartData: chartDataParty1 };
+      case "Astute Allocators":
+        return { data: aaData, chartData: chartDataParty2 };
+      case "Builder Advocates":
+        return { data: baData, chartData: chartDataParty3 };
+      case "Community Pool Champions":
+        return { data: cpcData, chartData: chartDataParty4 };
+      case "Governance Reformers":
+        return { data: grData, chartData: chartDataParty5 };
+      case "Guardians of Prosperity":
+        return { data: gopData, chartData: chartDataParty6 };
+      case "Incentive Strategists":
+        return { data: isData, chartData: chartDataParty7 };
+      case "Interop Party":
+        return { data: iopData, chartData: chartDataParty8 };
+      case "UX Alliance":
+        return { data: uxaData, chartData: chartDataParty9 };
+      default:
+        return { data: [], chartData: { labels: [], datasets: [] } };
+    }
+  };
+
+  const { data, chartData } = getPartyData(selectedParty.name);
+
+  // const partyData = {
+  //   "Anti-Inflation Party": {
+  //     data: aifData,
+  //     chartData: chartDataParty1,
+  //     mapFunction: (item: AifItem) => (
+  //       <div className="val-container2">
+  //         <div className="logo-box2">
+  //           <img src={item.thumbnail} className="vlogo2" alt="logo" />
+  //         </div>
+  //         <div className="name-box2">
+  //           <h2>{item.VALIDATOR_NAME}</h2>
+  //         </div>
+  //       </div>
+  //     ),
+  //   },
+  //   "Astute Allocators": {
+  //     data: aaData,
+  //     chartData: chartDataParty2,
+  //     mapFunction: (item: AaItem) => (
+  //       <div className="val-container2">
+  //         <div className="logo-box2">
+  //           <img src={item.thumbnail} className="vlogo2" alt="logo" />
+  //         </div>
+  //         <div className="name-box2">
+  //           <h2>{item.VALIDATOR_NAME}</h2>
+  //         </div>
+  //       </div>
+  //     ),
+  //   },
+  //   "Builder Advocates": {
+  //     data: baData,
+  //     chartData: chartDataParty3,
+  //     mapFunction: (item: BaItem) => (
+  //       <div className="val-container2">
+  //         <div className="logo-box2">
+  //           <img src={item.thumbnail} className="vlogo2" alt="logo" />
+  //         </div>
+  //         <div className="name-box2">
+  //           <h2>{item.VALIDATOR_NAME}</h2>
+  //         </div>
+  //       </div>
+  //     ),
+  //   },
+  //   "Community Pool Champions": {
+  //     data: cpcData,
+  //     chartData: chartDataParty4,
+  //     mapFunction: (item: CpcItem) => (
+  //       <div className="val-container2">
+  //         <div className="logo-box2">
+  //           <img src={item.thumbnail} className="vlogo2" alt="logo" />
+  //         </div>
+  //         <div className="name-box2">
+  //           <h2>{item.VALIDATOR_NAME}</h2>
+  //         </div>
+  //       </div>
+  //     ),
+  //   },
+  //   "Governance Reformers": {
+  //     data: grData,
+  //     chartData: chartDataParty5,
+  //     mapFunction: (item: GrItem) => (
+  //       <div className="val-container2">
+  //         <div className="logo-box2">
+  //           <img src={item.thumbnail} className="vlogo2" alt="logo" />
+  //         </div>
+  //         <div className="name-box2">
+  //           <h2>{item.VALIDATOR_NAME}</h2>
+  //         </div>
+  //       </div>
+  //     ),
+  //   },
+  //   "Guardians of Prosperity": {
+  //     data: gopData,
+  //     chartData: chartDataParty6,
+  //     mapFunction: (item: GopItem) => (
+  //       <div className="val-container2">
+  //         <div className="logo-box2">
+  //           <img src={item.thumbnail} className="vlogo2" alt="logo" />
+  //         </div>
+  //         <div className="name-box2">
+  //           <h2>{item.VALIDATOR_NAME}</h2>
+  //         </div>
+  //       </div>
+  //     ),
+  //   },
+  //   "Incentive Strategists": {
+  //     data: isData,
+  //     chartData: chartDataParty7,
+  //     mapFunction: (item: IsItem) => (
+  //       <div className="val-container2">
+  //         <div className="logo-box2">
+  //           <img src={item.thumbnail} className="vlogo2" alt="logo" />
+  //         </div>
+  //         <div className="name-box2">
+  //           <h2>{item.VALIDATOR_NAME}</h2>
+  //         </div>
+  //       </div>
+  //     ),
+  //   },
+  //   "Interop Party": {
+  //     data: iopData,
+  //     chartData: chartDataParty8,
+  //     mapFunction: (item: IopItem) => (
+  //       <div className="val-container2">
+  //         <div className="logo-box2">
+  //           <img src={item.thumbnail} className="vlogo2" alt="logo" />
+  //         </div>
+  //         <div className="name-box2">
+  //           <h2>{item.VALIDATOR_NAME}</h2>
+  //         </div>
+  //       </div>
+  //     ),
+  //   },
+  //   "UX Alliance": {
+  //     data: uxaData,
+  //     chartData: chartDataParty9,
+  //     mapFunction: (item: UxaItem) => (
+  //       <div className="val-container2">
+  //         <div className="logo-box2">
+  //           <img src={item.thumbnail} className="vlogo2" alt="logo" />
+  //         </div>
+  //         <div className="name-box2">
+  //           <h2>{item.VALIDATOR_NAME}</h2>
+  //         </div>
+  //       </div>
+  //     ),
+  //   },
+  // };
 
   ChartJS.register(
     CategoryScale,
@@ -1015,17 +1609,13 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
           <div className="list-house2">
             <h2>Validators</h2>
             <div className="valhouse2">
-              {aifData.map((AifItem) => (
+              {data.map((item) => (
                 <div className="val-container2">
                   <div className="logo-box2">
-                    <img
-                      src={AifItem.thumbnail}
-                      className="vlogo2"
-                      alt="logo"
-                    />
+                    <img src={item.thumbnail} className="vlogo2" alt="logo" />
                   </div>
                   <div className="name-box2">
-                    <h2>{AifItem.VALIDATOR_NAME}</h2>
+                    <h2>{item.VALIDATOR_NAME}</h2>
                   </div>
                 </div>
               ))}
@@ -1034,7 +1624,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
         </div>
         <div className="results2">
           <div className="chart-area">
-            <Bar options={chartOptions} data={chartDataParty1} />
+            <Bar options={chartOptions} data={chartData} />
           </div>
         </div>
       </div>
