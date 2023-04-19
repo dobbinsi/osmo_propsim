@@ -363,7 +363,16 @@ const partyList: Party[] = [
 ];
 
 const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
-  const [selectedParty, setSelectedParty] = useState<Party>(partyList[0]);
+  const [selectedParty, setSelectedParty] = useState<Party>(() => {
+    const storedSelectedParty = localStorage.getItem("selectedParty");
+
+    if (storedSelectedParty) {
+      return JSON.parse(storedSelectedParty) as Party;
+    } else {
+      return partyList[0];
+    }
+  });
+
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -1153,6 +1162,19 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
       .catch((err: AxiosError) => console.log(err));
   }, [vJawns]);
 
+  useEffect(() => {
+    const storedSelectedParty = localStorage.getItem("selectedParty");
+
+    if (storedSelectedParty) {
+      const parsedParty = JSON.parse(storedSelectedParty) as Party;
+      setSelectedParty(parsedParty);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("selectedParty", JSON.stringify(selectedParty));
+  }, [selectedParty]);
+
   const chartOptions: ChartOptions<"bar"> = {
     plugins: {
       tooltip: {
@@ -1416,14 +1438,19 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
       <div className="header">
         <img src={osmo} className="logomain" alt="osmo" />
         <div className="title">
-          <h1 className="psim">Voting Trends | </h1>
-          <FontAwesomeIcon
-            icon={faCheckToSlot}
-            color="#ffffff"
-            size="3x"
-            className="icon-mode"
-            onClick={togglePartyView}
-          />
+          <h2
+            className={`tab ${!partyView ? "active" : ""}`}
+            onClick={() => togglePartyView()}
+          >
+            Prop Simulator
+          </h2>
+          <span className="tab-divider">|</span>
+          <h2
+            className={`tab ${partyView ? "active" : ""}`}
+            onClick={() => togglePartyView()}
+          >
+            Voting Trends
+          </h2>
         </div>
       </div>
       <div className="main">
@@ -1514,7 +1541,18 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
                     />
                   </div>
                   <div className="name-box2">
-                    <h3>{truncateName(item.VALIDATOR_NAME, 20)}</h3>
+                    <h3>
+                      <a
+                        href={"https://www.mintscan.io/osmosis/validators/".concat(
+                          item.ADDRESS
+                        )}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="val-links"
+                      >
+                        {truncateName(item.VALIDATOR_NAME, 20)}
+                      </a>
+                    </h3>
                   </div>
                 </div>
               ))}

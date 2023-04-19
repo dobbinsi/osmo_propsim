@@ -768,14 +768,19 @@ function App() {
         <div className="header">
           <img src={osmo} className="logomain" alt="osmo" />
           <div className="title">
-            <h1 className="psim">Prop Simulator | </h1>
-            <FontAwesomeIcon
-              icon={faChartSimple}
-              color="#ffffff"
-              size="3x"
-              className="icon-mode"
-              onClick={togglePartyView}
-            />
+            <h2
+              className={`tab ${!partyView ? "active" : ""}`}
+              onClick={() => setPartyView(false)}
+            >
+              Prop Simulator
+            </h2>
+            <span className="tab-divider">|</span>
+            <h2
+              className={`tab ${partyView ? "active" : ""}`}
+              onClick={() => setPartyView(true)}
+            >
+              Voting Trends
+            </h2>
           </div>
         </div>
         <div className="main">
