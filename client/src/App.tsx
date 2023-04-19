@@ -636,7 +636,7 @@ function App() {
       });
     });
 
-    const totalPowerYes = calculateTotalPower("containerYes");
+    const totalPowerYes = calculateTotalPower("containerYes", draggables);
     const yesVotes = (totalPowerYes / Math.pow(10, 6)).toLocaleString(
       undefined,
       {
@@ -645,13 +645,13 @@ function App() {
       }
     );
     setSumYes(yesVotes);
-    const totalPowerNo = calculateTotalPower("containerNo");
+    const totalPowerNo = calculateTotalPower("containerNo", draggables);
     const noVotes = (totalPowerNo / Math.pow(10, 6)).toLocaleString(undefined, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
     setSumNo(noVotes);
-    const totalPowerNwv = calculateTotalPower("containerNwv");
+    const totalPowerNwv = calculateTotalPower("containerNwv", draggables);
     const nwvVotes = (totalPowerNwv / Math.pow(10, 6)).toLocaleString(
       undefined,
       {
@@ -661,7 +661,7 @@ function App() {
     );
     setSumNwv(nwvVotes);
 
-    const totalPowerAbs = calculateTotalPower("containerAbs");
+    const totalPowerAbs = calculateTotalPower("containerAbs", draggables);
     const absVotes = (totalPowerAbs / Math.pow(10, 6)).toLocaleString(
       undefined,
       {
@@ -682,7 +682,10 @@ function App() {
     setTotalVotes(totalVotesString);
   }
 
-  function calculateTotalPower(containerId: string): number {
+  function calculateTotalPower(
+    containerId: string,
+    draggables: ValidatorWithThumbnail[]
+  ): number {
     const filteredDraggables = draggables.filter(
       (draggable) => draggable.containerId === containerId
     );
@@ -698,8 +701,8 @@ function App() {
     return totalPower;
   }
 
-  function tallycalc(): any {
-    const totalPowerYes = calculateTotalPower("containerYes");
+  function tallycalc(draggables: ValidatorWithThumbnail[]): void {
+    const totalPowerYes = calculateTotalPower("containerYes", draggables);
     const yesVotes = (totalPowerYes / Math.pow(10, 6)).toLocaleString(
       undefined,
       {
@@ -708,13 +711,13 @@ function App() {
       }
     );
     setSumYes(yesVotes);
-    const totalPowerNo = calculateTotalPower("containerNo");
+    const totalPowerNo = calculateTotalPower("containerNo", draggables);
     const noVotes = (totalPowerNo / Math.pow(10, 6)).toLocaleString(undefined, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
     setSumNo(noVotes);
-    const totalPowerNwv = calculateTotalPower("containerNwv");
+    const totalPowerNwv = calculateTotalPower("containerNwv", draggables);
     const nwvVotes = (totalPowerNwv / Math.pow(10, 6)).toLocaleString(
       undefined,
       {
@@ -723,7 +726,7 @@ function App() {
       }
     );
     setSumNwv(nwvVotes);
-    const totalPowerAbs = calculateTotalPower("containerAbs");
+    const totalPowerAbs = calculateTotalPower("containerAbs", draggables);
     const absVotes = (totalPowerAbs / Math.pow(10, 6)).toLocaleString(
       undefined,
       {
@@ -758,8 +761,8 @@ function App() {
 
     const overId = over.id as string;
 
-    setDraggables((draggables) => {
-      return draggables.map((draggable) => {
+    setDraggables((prevDraggables) => {
+      const updatedDraggables = prevDraggables.map((draggable) => {
         if (draggable.description.identity === activeId) {
           return {
             ...draggable,
@@ -768,9 +771,14 @@ function App() {
         }
         return draggable;
       });
-    });
 
-    tallycalc();
+      tallycalc(updatedDraggables);
+      return updatedDraggables;
+    });
+  }
+
+  function handleTallyButtonClick(): void {
+    tallycalc(draggables);
   }
 
   return partyView ? (
@@ -942,7 +950,10 @@ function App() {
               <div className="results-right">
                 <div className="turnout">
                   <div>
-                    <button onClick={tallycalc} className="tallybutton">
+                    <button
+                      onClick={handleTallyButtonClick}
+                      className="tallybutton"
+                    >
                       Tally Votes
                     </button>
                     <button onClick={reload} className="resetbutton">
