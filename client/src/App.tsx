@@ -1,7 +1,5 @@
 import "./App.css";
 import osmo from "./logos/osmologo.svg";
-import flipjawn from "./logos/flipsidewhite.png";
-import keplr from "./logos/keplr.svg";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -9,6 +7,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { DragOverEvent, DragStartEvent } from "@dnd-kit/core";
 import {
   DndContext,
+  DragEndEvent,
   KeyboardSensor,
   MouseSensor,
   TouchSensor,
@@ -21,11 +20,8 @@ import { Draggable } from "./components/Draggable";
 import { Droppable } from "./components/Droppable";
 
 import { Chart as ChartJS, ArcElement, Title, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
 import DoughnutChart from "./components/DoughnutChart";
 import Footer from "./components/Footer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChartSimple } from "@fortawesome/free-solid-svg-icons";
 import Parties from "./components/Parties";
 
 function App() {
@@ -755,12 +751,34 @@ function App() {
     setPartyView(!partyView);
   };
 
+  function handleDragEnd(ev: DragEndEvent) {
+    const { active, over } = ev;
+    if (!over) return;
+    const activeId = active.id;
+
+    const overId = over.id as string;
+
+    setDraggables((draggables) => {
+      return draggables.map((draggable) => {
+        if (draggable.description.identity === activeId) {
+          return {
+            ...draggable,
+            containerId: overId,
+          };
+        }
+        return draggable;
+      });
+    });
+
+    tallycalc();
+  }
+
   return partyView ? (
     <Parties partyView={partyView} togglePartyView={togglePartyView} />
   ) : (
     <DndContext
       sensors={sensors}
-      onDragOver={handleDragOver}
+      onDragEnd={handleDragEnd}
       onDragStart={handleDragStart}
       autoScroll={{ enabled: false, layoutShiftCompensation: false }}
     >
