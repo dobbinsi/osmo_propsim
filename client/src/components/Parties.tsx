@@ -1459,20 +1459,25 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
           <div className="party-desc">
             <div className="desc-content">
               <div className="desc-desc">
-                <h1>
-                  <span style={{ cursor: "pointer" }} onClick={toggleDropdown}>
-                    {selectedParty.name}
-                  </span>
-                  <span ref={arrowIconRef}>
-                    <FontAwesomeIcon
-                      icon={faCaretDown}
-                      color="#ffffff"
-                      size="sm"
-                      style={{ marginLeft: "1rem", cursor: "pointer" }}
+                <span className="pname">
+                  <h1>
+                    <span
+                      style={{ cursor: "pointer" }}
                       onClick={toggleDropdown}
-                    />
-                  </span>
-                </h1>
+                    >
+                      {selectedParty.name}
+                    </span>
+                    <span ref={arrowIconRef}>
+                      <FontAwesomeIcon
+                        icon={faCaretDown}
+                        color="#ffffff"
+                        size="sm"
+                        style={{ marginLeft: "1rem", cursor: "pointer" }}
+                        onClick={toggleDropdown}
+                      />
+                    </span>
+                  </h1>
+                </span>
                 {isDropdownOpen && (
                   <div
                     ref={dropdownRef}

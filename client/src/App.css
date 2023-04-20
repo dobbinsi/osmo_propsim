@@ -197,6 +197,8 @@ body {
   overflow-y: hidden;
   padding-bottom: 10px;
   cursor: pointer;
+  scrollbar-width: thin;
+  scrollbar-color: #025dff transparent;
 }
 
 .valhouse::-webkit-scrollbar {
@@ -374,12 +376,6 @@ body {
 
 .abscolor {
   color: #6161ab;
-}
-
-@media (max-width: 950px) {
-  .psim {
-    display: none;
-  }
 }
 
 .tallybutton {
@@ -610,5 +606,50 @@ body {
   }
   .no-with {
     display: none;
+  }
+  .results {
+    height: auto;
+  }
+
+  .results-main {
+    flex-direction: column;
+  }
+
+  .results-left,
+  .results-right {
+    width: 100%;
+  }
+
+  .dough {
+    margin-bottom: 20px;
+  }
+
+  .results-right {
+    margin-left: 0;
+  }
+
+  .tallies {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .tallyjawn {
+    width: 48%;
+    margin-bottom: 20px;
+  }
+
+  .turnout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .turnout div {
+    display: flex;
+    justify-content: center;
+  }
+
+  .pname {
+    font-size: small;
   }
 }

@@ -863,14 +863,17 @@ function App() {
                     </button>
                   </div>
                   <h2>Turnout: {turnout.toFixed(2)}%</h2>
-                  <h3>
-                    Quorum:{" "}
-                    {quorum.toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}{" "}
-                    OSMO (20% of total stake)
-                  </h3>
+                  <span className="no-with">
+                    <h3>
+                      Quorum:{" "}
+                      {quorum.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}{" "}
+                      OSMO (20% of total stake){" "}
+                      <span className="no-with"></span>
+                    </h3>
+                  </span>
                 </div>
                 <div className="tallies">
                   <div className="tallyjawn">
