@@ -11,6 +11,13 @@ type DraggableProps = {
   draggingColor?: string;
 };
 
+function trimText(text: string, maxLength: number): string {
+  if (text.length > maxLength) {
+    return text.slice(0, maxLength);
+  }
+  return text;
+}
+
 export function Draggable(props: DraggableProps) {
   const { id, styles, name, logo, power, draggingColor } = props;
   const { attributes, listeners, setNodeRef, transform, isDragging } =
@@ -40,7 +47,7 @@ export function Draggable(props: DraggableProps) {
       <div className="val-container">
         <div className="logo-box">
           <img src={logo} className="vlogo" alt="logo" />
-          <h4>{name}</h4>
+          <h4>{trimText(name || "", 30)}</h4>
         </div>
         <div className="vinfo">
           <div className="vinfo-power">
