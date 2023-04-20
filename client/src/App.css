@@ -652,4 +652,19 @@ body {
   .pname {
     font-size: small;
   }
+
+  .val-container {
+    width: auto;
+  }
+
+  .vlogo {
+    margin-right: 0px;
+  }
+
+  .vnames {
+    display: none;
+  }
+  .vinfo {
+    display: none;
+  }
 }

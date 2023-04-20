@@ -47,7 +47,7 @@ export function Draggable(props: DraggableProps) {
       <div className="val-container">
         <div className="logo-box">
           <img src={logo} className="vlogo" alt="logo" />
-          <h4>{trimText(name || "", 30)}</h4>
+          <h4 className="vnames">{trimText(name || "", 30)}</h4>
         </div>
         <div className="vinfo">
           <div className="vinfo-power">
