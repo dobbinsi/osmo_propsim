@@ -3,8 +3,8 @@ import osmo from "./logos/osmologo.svg";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { Analytics } from "@vercel/analytics/react";
 
-import React, { useEffect, useRef, useState } from "react";
-import { DragOverEvent, DragStartEvent } from "@dnd-kit/core";
+import React, { useEffect, useState } from "react";
+import { DragStartEvent } from "@dnd-kit/core";
 import {
   DndContext,
   DragEndEvent,
@@ -29,30 +29,23 @@ function App() {
     (document.body.style as any).zoom = "80%";
   };
 
-  const [bondedTokens, setBondedTokens] = React.useState<string>();
+  const [bondedTokens, setBondedTokens] = React.useState<number>(0);
   const [vJawns, setVjawns] = React.useState<ValidatorWithThumbnail[]>([]);
-  const [sumYes, setSumYes] = React.useState<string>();
-  const [sumNo, setSumNo] = React.useState<string>();
-  const [sumNwv, setSumNwv] = React.useState<string>();
-  const [sumAbs, setSumAbs] = React.useState<string>();
-  const [totalVotes, setTotalVotes] = React.useState<string>();
-  const [quorum, setQuorum] = React.useState<string>();
+  const [sumYes, setSumYes] = React.useState<number>(0);
+  const [sumNo, setSumNo] = React.useState<number>(0);
+  const [sumNwv, setSumNwv] = React.useState<number>(0);
+  const [sumAbs, setSumAbs] = React.useState<number>(0);
+  const [totalVotes, setTotalVotes] = React.useState<number>(0);
+  const [quorum, setQuorum] = React.useState<number>(0);
 
-  const bondedTokensNum = parseFloat(bondedTokens || "0");
-  const qNumber = parseFloat(quorum || "0");
-  const sumYesNum = parseFloat(sumYes || "0");
-  const sumNoNum = parseFloat(sumNo || "0");
-  const sumNwvNum = parseFloat(sumNwv || "0");
-  const sumAbsNum = parseFloat(sumAbs || "0");
+  const totalVotesNum = sumYes + sumNo + sumNwv + sumAbs;
+  const yesPercentage = (sumYes / totalVotesNum) * 100 || 0.0;
+  const noPercentage = (sumNo / totalVotesNum) * 100 || 0.0;
+  const nwvPercentage = (sumNwv / totalVotesNum) * 100 || 0.0;
+  const absPercentage = (sumAbs / totalVotesNum) * 100 || 0.0;
 
-  const totalVotesNum = sumYesNum + sumNoNum + sumNwvNum + sumAbsNum;
-  const yesPercentage = ((sumYesNum / totalVotesNum) * 100 || 0.0).toFixed(2);
-  const noPercentage = ((sumNoNum / totalVotesNum) * 100 || 0.0).toFixed(2);
-  const nwvPercentage = ((sumNwvNum / totalVotesNum) * 100 || 0.0).toFixed(2);
-  const absPercentage = ((sumAbsNum / totalVotesNum) * 100 || 0.0).toFixed(2);
-
-  const yesYes = (sumYesNum / (totalVotesNum - sumAbsNum)) * 100;
-  const turnout = ((totalVotesNum / bondedTokensNum) * 100 || 0.0).toFixed(2);
+  const yesYes = (sumYes / (totalVotesNum - sumAbs)) * 100;
+  const turnout = Math.min((totalVotesNum / bondedTokens) * 100, 100) || 0.0;
 
   const [partyView, setPartyView] = useState(false);
 
@@ -284,7 +277,7 @@ function App() {
     "536585A71903C50F":
       "https://s3.amazonaws.com/keybase_processed_uploads/3f9db55d73c7509bc05181b655997405_360_360.jpg",
     "44937E3DA9AA699A":
-      "https://s3.amazonaws.com/keybase_processed_uploads/191b18500888872453f7029b1a0fb305_360_360.jpg",
+      "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F9ee1518187b9d4350b3212dd5292fe05_360_360.jpg&w=64&q=75",
     "70C162B0473634FD":
       "https://s3.amazonaws.com/keybase_processed_uploads/7457583aa6c1316335719ec6cd1ba905_360_360.jpg",
     "1326A75B9148A214":
@@ -433,6 +426,8 @@ function App() {
       "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1knn0dpjfukmq97yz09uqt80896gwg0rfv6jtvp.png",
     "9B2EB22C7DAC8684":
       "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper183psjr4y05kwtpfew073q6hm84xdhp9tcn8ne7.png",
+    "44771D06A00DD695":
+      "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F173328839c66214bd12fc8100bd04105_360_360.jpg&w=64&q=75",
   };
 
   const partChartData = {
@@ -497,7 +492,7 @@ function App() {
     min_self_delegation: string;
     operator_address: string;
     status: string;
-    tokens: string;
+    tokens: any;
     unbonding_height: string;
     unbonding_time: string;
   }
@@ -534,26 +529,12 @@ function App() {
         { headers: headers3 }
       )
       .then((res: AxiosResponse<TokensResponse>) => {
-        const bondedValue = parseFloat(res.data.pool.bonded_tokens);
-        const bondedString = (bondedValue / Math.pow(10, 6)).toLocaleString(
-          undefined,
-          {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          }
-        );
-        setBondedTokens(bondedString);
-        const quorumValue = parseFloat(res.data.pool.bonded_tokens) * 0.2;
-        const quorumString = (quorumValue / Math.pow(10, 6)).toLocaleString(
-          undefined,
-          {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          }
-        );
-        setQuorum(quorumString);
+        const bondedValue =
+          parseFloat(res.data.pool.bonded_tokens) / Math.pow(10, 6);
+        setBondedTokens(bondedValue);
+        const quorumValue = bondedValue * 0.2;
+        setQuorum(quorumValue);
       })
-
       .catch((err: AxiosError) => console.log(err));
   }, []);
 
@@ -576,15 +557,24 @@ function App() {
           }
         );
 
-        const sortedValidators = uniqueValidators.sort(
-          (a: Validatooor, b: Validatooor) =>
-            parseInt(b.tokens) - parseInt(a.tokens)
+        const uniqueValidatorsWithParsedTokens = uniqueValidators.map(
+          (validator: Validatooor) => {
+            return {
+              ...validator,
+              tokens: parseFloat(validator.tokens),
+            };
+          }
+        );
+
+        const sortedValidators = uniqueValidatorsWithParsedTokens.sort(
+          (a: Validatooor, b: Validatooor) => b.tokens - a.tokens
         );
         const top150Validators = sortedValidators.slice(0, 147);
         const combinedArray: ValidatorWithThumbnail[] = top150Validators.map(
           (item: Validatooor) => {
             return {
               ...item,
+              tokens: item.tokens,
               thumbnail: thumbnails[item.description.identity],
               containerId: "ROOT",
             };
@@ -593,6 +583,7 @@ function App() {
         setVjawns(combinedArray);
         setDraggables(combinedArray);
       })
+
       .catch((err: AxiosError) => console.log(err));
   }, []);
 
@@ -617,71 +608,6 @@ function App() {
     setActiveItem(activeDraggable);
   }
 
-  function handleDragOver(ev: DragOverEvent) {
-    const { active, over } = ev;
-    if (!over) return;
-    const activeId = active.id;
-
-    const overId = over.id as string;
-
-    setDraggables((draggables) => {
-      return draggables.map((draggable) => {
-        if (draggable.description.identity === activeId) {
-          return {
-            ...draggable,
-            containerId: overId,
-          };
-        }
-        return draggable;
-      });
-    });
-
-    const totalPowerYes = calculateTotalPower("containerYes", draggables);
-    const yesVotes = (totalPowerYes / Math.pow(10, 6)).toLocaleString(
-      undefined,
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }
-    );
-    setSumYes(yesVotes);
-    const totalPowerNo = calculateTotalPower("containerNo", draggables);
-    const noVotes = (totalPowerNo / Math.pow(10, 6)).toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-    setSumNo(noVotes);
-    const totalPowerNwv = calculateTotalPower("containerNwv", draggables);
-    const nwvVotes = (totalPowerNwv / Math.pow(10, 6)).toLocaleString(
-      undefined,
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }
-    );
-    setSumNwv(nwvVotes);
-
-    const totalPowerAbs = calculateTotalPower("containerAbs", draggables);
-    const absVotes = (totalPowerAbs / Math.pow(10, 6)).toLocaleString(
-      undefined,
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }
-    );
-    setSumAbs(absVotes);
-
-    const totalVotesNumber =
-      totalPowerYes + totalPowerNo + totalPowerNwv + totalPowerAbs;
-    const totalVotesString = (
-      totalVotesNumber / Math.pow(10, 6)
-    ).toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-    setTotalVotes(totalVotesString);
-  }
-
   function calculateTotalPower(
     containerId: string,
     draggables: ValidatorWithThumbnail[]
@@ -695,7 +621,7 @@ function App() {
     }
 
     const totalPower = filteredDraggables.reduce((sum, draggable) => {
-      return sum + parseFloat(draggable.tokens);
+      return sum + draggable.tokens;
     }, 0);
 
     return totalPower;
@@ -703,47 +629,21 @@ function App() {
 
   function tallycalc(draggables: ValidatorWithThumbnail[]): void {
     const totalPowerYes = calculateTotalPower("containerYes", draggables);
-    const yesVotes = (totalPowerYes / Math.pow(10, 6)).toLocaleString(
-      undefined,
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }
-    );
+    const yesVotes = totalPowerYes / Math.pow(10, 6);
     setSumYes(yesVotes);
     const totalPowerNo = calculateTotalPower("containerNo", draggables);
-    const noVotes = (totalPowerNo / Math.pow(10, 6)).toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
+    const noVotes = totalPowerNo / Math.pow(10, 6);
     setSumNo(noVotes);
     const totalPowerNwv = calculateTotalPower("containerNwv", draggables);
-    const nwvVotes = (totalPowerNwv / Math.pow(10, 6)).toLocaleString(
-      undefined,
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }
-    );
+    const nwvVotes = totalPowerNwv / Math.pow(10, 6);
     setSumNwv(nwvVotes);
     const totalPowerAbs = calculateTotalPower("containerAbs", draggables);
-    const absVotes = (totalPowerAbs / Math.pow(10, 6)).toLocaleString(
-      undefined,
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }
-    );
+    const absVotes = totalPowerAbs / Math.pow(10, 6);
     setSumAbs(absVotes);
     const totalVotesNumber =
       totalPowerYes + totalPowerNo + totalPowerNwv + totalPowerAbs;
-    const totalVotesString = (
-      totalVotesNumber / Math.pow(10, 6)
-    ).toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-    setTotalVotes(totalVotesString);
+    const totalVotesNumberClean = totalVotesNumber / Math.pow(10, 6);
+    setTotalVotes(totalVotesNumberClean);
   }
 
   function reload(): any {
@@ -880,7 +780,9 @@ function App() {
             </div>
             <div className="bucket">
               <div className="category">
-                <h2>No With Veto</h2>
+                <h2>
+                  <span className="no-with">No With</span> Veto
+                </h2>
               </div>
               <div className="noveto">
                 <Droppable id="containerNwv" className="droppable">
@@ -931,7 +833,7 @@ function App() {
                 <h2>Results</h2>
               </div>
               <div>
-                {totalVotesNum > qNumber && yesYes > 49.999 ? (
+                {totalVotesNum > quorum && yesYes > 49.999 ? (
                   <h2>PASSED</h2>
                 ) : (
                   <h2>REJECTED</h2>
@@ -960,35 +862,68 @@ function App() {
                       Reset Votes
                     </button>
                   </div>
-                  <h2>Turnout: {turnout}%</h2>
-                  <h3>Quorum: {quorum} OSMO (20% of total stake)</h3>
+                  <h2>Turnout: {turnout.toFixed(2)}%</h2>
+                  <h3>
+                    Quorum:{" "}
+                    {quorum.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}{" "}
+                    OSMO (20% of total stake)
+                  </h3>
                 </div>
                 <div className="tallies">
                   <div className="tallyjawn">
-                    <h3 className="yescolor">YES: {yesPercentage}%</h3>
+                    <h3 className="yescolor">
+                      YES: {yesPercentage.toFixed(2)}%
+                    </h3>
                     <div className="tttt">
-                      <h4>{sumYes}</h4>
+                      <h4>
+                        {sumYes.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </h4>
                       <h4>OSMO</h4>
                     </div>
                   </div>
                   <div className="tallyjawn">
-                    <h3 className="nocolor">NO: {noPercentage}%</h3>
+                    <h3 className="nocolor">NO: {noPercentage.toFixed(2)}%</h3>
                     <div className="tttt">
-                      <h4>{sumNo}</h4>
+                      <h4>
+                        {sumNo.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </h4>
                       <h4>OSMO</h4>
                     </div>
                   </div>
                   <div className="tallyjawn">
-                    <h3 className="nwvcolor">NWV: {nwvPercentage}%</h3>
+                    <h3 className="nwvcolor">
+                      NWV: {nwvPercentage.toFixed(2)}%
+                    </h3>
                     <div className="tttt">
-                      <h4>{sumNwv}</h4>
+                      <h4>
+                        {sumNwv.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </h4>
                       <h4>OSMO</h4>
                     </div>
                   </div>
                   <div className="tallyjawn">
-                    <h3 className="abscolor">ABSTAIN: {absPercentage}%</h3>
+                    <h3 className="abscolor">
+                      ABSTAIN: {absPercentage.toFixed(2)}%
+                    </h3>
                     <div className="tttt">
-                      <h4>{sumAbs}</h4>
+                      <h4>
+                        {sumAbs.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </h4>
                       <h4>OSMO</h4>
                     </div>
                   </div>

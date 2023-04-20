@@ -7,7 +7,7 @@ type DraggableProps = {
   styles?: React.CSSProperties;
   name?: string;
   logo?: string;
-  power: string;
+  power: number;
   draggingColor?: string;
 };
 
@@ -23,14 +23,7 @@ export function Draggable(props: DraggableProps) {
     opacity: isDragging ? 0 : 1,
   };
 
-  const powerNumber = parseFloat(power);
-  const powerDecimal = (powerNumber / Math.pow(10, 6)).toLocaleString(
-    undefined,
-    {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }
-  );
+  const powerDecimal = power / Math.pow(10, 6);
 
   return (
     <div
@@ -51,7 +44,12 @@ export function Draggable(props: DraggableProps) {
         </div>
         <div className="vinfo">
           <div className="vinfo-power">
-            <h5>{powerDecimal}</h5>
+            <h5>
+              {powerDecimal.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+            </h5>
             <h5 className="osmolabel">OSMO</h5>
           </div>
         </div>

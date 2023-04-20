@@ -6,7 +6,6 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import Footer from "./Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCheckToSlot,
   faLink,
   faHandHoldingDollar,
   faCommentsDollar,
@@ -649,7 +648,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
     "536585A71903C50F":
       "https://s3.amazonaws.com/keybase_processed_uploads/3f9db55d73c7509bc05181b655997405_360_360.jpg",
     "44937E3DA9AA699A":
-      "https://s3.amazonaws.com/keybase_processed_uploads/191b18500888872453f7029b1a0fb305_360_360.jpg",
+      "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F9ee1518187b9d4350b3212dd5292fe05_360_360.jpg&w=64&q=75",
     "70C162B0473634FD":
       "https://s3.amazonaws.com/keybase_processed_uploads/7457583aa6c1316335719ec6cd1ba905_360_360.jpg",
     "1326A75B9148A214":
@@ -798,6 +797,8 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
       "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1knn0dpjfukmq97yz09uqt80896gwg0rfv6jtvp.png",
     "9B2EB22C7DAC8684":
       "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper183psjr4y05kwtpfew073q6hm84xdhp9tcn8ne7.png",
+    "44771D06A00DD695":
+      "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F173328839c66214bd12fc8100bd04105_360_360.jpg&w=64&q=75",
   };
 
   const chartLabels1 = aifData.map((item: { [x: string]: any }) => {
@@ -1534,11 +1535,19 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
               {data.map((item) => (
                 <div className="val-container2">
                   <div className="logo-box2">
-                    <img
-                      src={item.thumbnail || valFallback}
-                      className="vlogo2"
-                      alt="logo"
-                    />
+                    <a
+                      href={"https://www.mintscan.io/osmosis/validators/".concat(
+                        item.ADDRESS
+                      )}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={item.thumbnail || valFallback}
+                        className="vlogo2"
+                        alt="logo"
+                      />
+                    </a>
                   </div>
                   <div className="name-box2">
                     <h3>
