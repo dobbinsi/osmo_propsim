@@ -45,6 +45,7 @@ function App() {
   const absPercentage = (sumAbs / totalVotesNum) * 100 || 0.0;
 
   const yesYes = (sumYes / (totalVotesNum - sumAbs)) * 100;
+  const vetoVeto = (sumNwv / (totalVotesNum - sumAbs)) * 100;
   const turnout = Math.min((totalVotesNum / bondedTokens) * 100, 100) || 0.0;
 
   const [partyView, setPartyView] = useState(false);
@@ -832,9 +833,15 @@ function App() {
               <div>
                 <h2>Results</h2>
               </div>
-              <div>
-                {totalVotesNum > quorum && yesYes > 49.999 ? (
-                  <h2>PASSED</h2>
+              <div className="finalresult">
+                {totalVotesNum > quorum ? (
+                  vetoVeto > 33.4 ? (
+                    <h2>REJECTED - VETO</h2>
+                  ) : yesYes > 49.999 ? (
+                    <h2>PASSED</h2>
+                  ) : (
+                    <h2>REJECTED</h2>
+                  )
                 ) : (
                   <h2>REJECTED</h2>
                 )}
