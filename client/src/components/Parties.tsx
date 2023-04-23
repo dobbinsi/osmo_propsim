@@ -16,6 +16,7 @@ import {
   faFireFlameCurved,
   faCode,
   faCaretDown,
+  faWheatAwn,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -266,16 +267,6 @@ interface BarChartData {
 
 const partyList: Party[] = [
   {
-    name: "Anti-Inflation Party",
-    description:
-      "Validators who consistently vote against proposals that could lead to higher token inflation rates or emission schedules. Based on voting history, these validators are concerned about token dilution and its impact on the long-term value of OSMO tokens. They tend to vote No or No with Veto on proposals that seek to match external incentives for a given liquidity pool.",
-    method1: "Keywords: Match",
-    criteria1: "25% NO or NWV",
-    method2: "Participation Hurdle",
-    criteria2: "10%",
-    logo: faFireFlameCurved,
-  },
-  {
     name: "Astute Allocators",
     description:
       "Validators who regularly vote 'No' or 'No With Veto' on Community Pool Spend proposals. These validators prioritize cautious and disciplined spending of community pool resources, emphasizing the importance of financial responsibility and sustainability. They tend to scrutinize community pool spending proposals carefully and may oppose initiatives they deem unnecessary or lacking in clear, long-term benefits for the Osmosis ecosystem.",
@@ -347,6 +338,16 @@ const partyList: Party[] = [
     method2: "Participation Hurdle",
     criteria2: "50%",
     logo: faLink,
+  },
+  {
+    name: "Sustainable Sowers",
+    description:
+      "Validators who regularly vote against proposals that seek to match external incentives for a given liquidity pool. Based on voting history, they believe that a more measured approach to yield farming incentives is essential for the long-term stability and growth of the Osmosis ecosystem and that directing OSMO incentives toward more strategically important pools will lead to better outcomes.",
+    method1: "Keywords: Match",
+    criteria1: "25% NO or NWV",
+    method2: "Participation Hurdle",
+    criteria2: "10%",
+    logo: faWheatAwn,
   },
   {
     name: "UX Alliance",
@@ -1396,7 +1397,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
 
   const getPartyData = (partyName: string) => {
     switch (partyName) {
-      case "Anti-Inflation Party":
+      case "Sustainable Sowers":
         return { data: aifData, chartData: chartDataParty1 };
       case "Astute Allocators":
         return { data: aaData, chartData: chartDataParty2 };
