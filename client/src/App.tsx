@@ -429,6 +429,8 @@ function App() {
       "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper183psjr4y05kwtpfew073q6hm84xdhp9tcn8ne7.png",
     "44771D06A00DD695":
       "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F173328839c66214bd12fc8100bd04105_360_360.jpg&w=64&q=75",
+    B74BDDE339591690:
+      "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper15004ysvmqnqzkvt7x6s4cd53flmmvgfv6t4y9y.png",
   };
 
   const partChartData = {
@@ -859,12 +861,12 @@ function App() {
               <div className="results-right">
                 <div className="turnout">
                   <div>
-                    <button
+                    {/* <button
                       onClick={handleTallyButtonClick}
                       className="tallybutton"
                     >
                       Tally Votes
-                    </button>
+                    </button> */}
                     <button onClick={reload} className="resetbutton">
                       Reset Votes
                     </button>

@@ -408,7 +408,7 @@ body {
   overflow: hidden;
   border-radius: 10px;
   border: 2px solid #8f82fb;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 
 .resetbutton:hover {
