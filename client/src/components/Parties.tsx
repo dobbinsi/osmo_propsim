@@ -1552,6 +1552,7 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
                         src={item.thumbnail || valFallback}
                         className="vlogo2"
                         alt="logo"
+                        loading="lazy"
                       />
                     </a>
                   </div>
