@@ -27,6 +27,7 @@ export interface Validatooor {
 export interface ValidatorWithThumbnail extends Validatooor {
   thumbnail?: string;
   containerId: string;
+  combinedKey: string;
 }
 
 export interface ValidatorResponse {

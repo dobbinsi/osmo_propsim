@@ -130,19 +130,20 @@ function App() {
   useEffect(() => {
     axios
       .get<ValidatorResponse>(
-        "https://lcd-osmosis.imperator.co/cosmos/staking/v1beta1/validators?pagination.limit=1000",
+        "https://lcd-osmosis.imperator.co/cosmos/staking/v1beta1/validators?pagination.limit=500",
         { headers: headers5 }
       )
       .then((res: AxiosResponse<ValidatorResponse>) => {
-        console.log(res.data.validators);
-        const uniqueIdentities = new Set();
+        const uniqueOperatorAddressIdentities = new Set();
 
         const uniqueValidators = res.data.validators.filter(
           (validator: Validatooor) => {
-            if (uniqueIdentities.has(validator.description.identity)) {
+            const combinedKey =
+              validator.operator_address + validator.description.identity;
+            if (uniqueOperatorAddressIdentities.has(combinedKey)) {
               return false;
             }
-            uniqueIdentities.add(validator.description.identity);
+            uniqueOperatorAddressIdentities.add(combinedKey);
             return true;
           }
         );
@@ -159,14 +160,16 @@ function App() {
         const sortedValidators = uniqueValidatorsWithParsedTokens.sort(
           (a: Validatooor, b: Validatooor) => b.tokens - a.tokens
         );
-        const top150Validators = sortedValidators.slice(0, 147);
+        const top150Validators = sortedValidators.slice(0, 160);
         const combinedArray: ValidatorWithThumbnail[] = top150Validators.map(
           (item: Validatooor) => {
+            const identity = item.description.identity || item.operator_address;
             return {
               ...item,
               tokens: item.tokens,
-              thumbnail: thumbnails[item.description.identity],
+              thumbnail: thumbnails[identity],
               containerId: "ROOT",
+              combinedKey: item.operator_address + item.description.identity,
             };
           }
         );
@@ -193,7 +196,7 @@ function App() {
     const { active } = ev;
     const activeId = active.id;
     const activeDraggable = draggables.find(
-      (draggable) => draggable.description.identity === activeId
+      (draggable) => draggable.combinedKey === activeId
     );
     setActiveItem(activeDraggable);
   }
@@ -253,7 +256,7 @@ function App() {
 
     setDraggables((prevDraggables) => {
       const updatedDraggables = prevDraggables.map((draggable) => {
-        if (draggable.description.identity === activeId) {
+        if (draggable.combinedKey === activeId) {
           return {
             ...draggable,
             containerId: overId,
@@ -309,8 +312,8 @@ function App() {
                     .filter((draggable) => draggable.containerId === "ROOT")
                     .map((draggable) => (
                       <Draggable
-                        key={draggable.description.identity}
-                        id={draggable.description.identity}
+                        key={draggable.combinedKey}
+                        id={draggable.combinedKey}
                         name={draggable.description.moniker}
                         logo={draggable.thumbnail}
                         power={draggable.tokens}
@@ -334,8 +337,8 @@ function App() {
                     )
                     .map((draggable) => (
                       <Draggable
-                        key={draggable.description.identity}
-                        id={draggable.description.identity}
+                        key={draggable.combinedKey}
+                        id={draggable.combinedKey}
                         name={draggable.description.moniker}
                         logo={draggable.thumbnail}
                         power={draggable.tokens}
@@ -357,8 +360,8 @@ function App() {
                     )
                     .map((draggable) => (
                       <Draggable
-                        key={draggable.description.identity}
-                        id={draggable.description.identity}
+                        key={draggable.combinedKey}
+                        id={draggable.combinedKey}
                         name={draggable.description.moniker}
                         logo={draggable.thumbnail}
                         power={draggable.tokens}
@@ -382,8 +385,8 @@ function App() {
                     )
                     .map((draggable) => (
                       <Draggable
-                        key={draggable.description.identity}
-                        id={draggable.description.identity}
+                        key={draggable.combinedKey}
+                        id={draggable.combinedKey}
                         name={draggable.description.moniker}
                         logo={draggable.thumbnail}
                         power={draggable.tokens}
@@ -405,8 +408,8 @@ function App() {
                     )
                     .map((draggable) => (
                       <Draggable
-                        key={draggable.description.identity}
-                        id={draggable.description.identity}
+                        key={draggable.combinedKey}
+                        id={draggable.combinedKey}
                         name={draggable.description.moniker}
                         logo={draggable.thumbnail}
                         power={draggable.tokens}
@@ -536,8 +539,8 @@ function App() {
       <DragOverlay>
         {activeItem && (
           <Draggable
-            key={activeItem.description.identity}
-            id={activeItem.description.identity}
+            key={activeItem.combinedKey}
+            id={activeItem.combinedKey}
             name={activeItem.description.moniker}
             logo={activeItem.thumbnail}
             power={activeItem.tokens}

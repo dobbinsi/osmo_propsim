@@ -379,4 +379,36 @@ export const thumbnails: { [identity: string]: string } = {
     "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F173328839c66214bd12fc8100bd04105_360_360.jpg&w=64&q=75",
   B74BDDE339591690:
     "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper15004ysvmqnqzkvt7x6s4cd53flmmvgfv6t4y9y.png",
+  osmovaloper13eq5c99ym05jn02e78l8cac2fagzgdhh4294zk:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper13eq5c99ym05jn02e78l8cac2fagzgdhh4294zk.png",
+  osmovaloper1vcpryrtatk6c8z6tcyx9w45jsw56rvkqapgq6p:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1vcpryrtatk6c8z6tcyx9w45jsw56rvkqapgq6p.png",
+  osmovaloper1hk64xxqufcdyh627s29mruep8yfmxpuuclacer:
+    "https://www.mintscan.io/_next/static/image/assets/Validator/validator_none.983ad4f48d419359dce599901ebb054c.svg",
+  osmovaloper1h3rgv70cp2uapm5066l38u468udxkx3ecdpv04:
+    "https://www.mintscan.io/_next/static/image/assets/Validator/validator_none.983ad4f48d419359dce599901ebb054c.svg",
+  osmovaloper1prmsfrgvla0u8x3kwc8k0mcqqve3h8y73d37nm:
+    "https://www.mintscan.io/_next/static/image/assets/Validator/validator_none.983ad4f48d419359dce599901ebb054c.svg",
+  osmovaloper1eh5mwu044gd5ntkkc2xgfg8247mgc56f4dlt9h:
+    "https://www.mintscan.io/_next/static/image/assets/Validator/validator_none.983ad4f48d419359dce599901ebb054c.svg",
+  osmovaloper1epp52vecttkkvs3s84c9m8s2v2jrf7gtpx6pq0:
+    "https://www.mintscan.io/_next/static/image/assets/Validator/validator_none.983ad4f48d419359dce599901ebb054c.svg",
+  osmovaloper1lfn5ywlunadd3fl8lcem05ew7vezns2kx06pf0:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1lfn5ywlunadd3fl8lcem05ew7vezns2kx06pf0.png",
+  osmovaloper1tv9wnreg9z5qlxyte8526n7p3tjasndede2kj9:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1tv9wnreg9z5qlxyte8526n7p3tjasndede2kj9.png",
+  osmovaloper10kn8nhlchp3qxdvsvte4zepfkpvlfarp8nk8pf:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper10kn8nhlchp3qxdvsvte4zepfkpvlfarp8nk8pf.png",
+  osmovaloper1fdratlcgy56etxd07n03vcfm20m4mff8qzn2p3:
+    "https://www.mintscan.io/_next/static/image/assets/Validator/validator_none.983ad4f48d419359dce599901ebb054c.svg",
+  osmovaloper1z2q6gse6fafvdju6zvgx7r7sj6zjtg75xu6cg0:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1z2q6gse6fafvdju6zvgx7r7sj6zjtg75xu6cg0.png",
+  osmovaloper1cm83xqns9sqhv9a8vd6fggt6mvuu8mmzszknae:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1cm83xqns9sqhv9a8vd6fggt6mvuu8mmzszknae.png",
+  osmovaloper1kls9ca0h980sqfmt0497jj8kad3lcws6g08mld:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1kls9ca0h980sqfmt0497jj8kad3lcws6g08mld.png",
+  osmovaloper1j7euyj85fv2jugejrktj540emh9353ltnz0lvc:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1j7euyj85fv2jugejrktj540emh9353ltnz0lvc.png",
+  osmovaloper1y6y38g5pxcu3ca2v8merufs9eagnqd9u2yf5ng:
+    "https://www.mintscan.io/_next/static/image/assets/Validator/validator_none.983ad4f48d419359dce599901ebb054c.svg",
 };

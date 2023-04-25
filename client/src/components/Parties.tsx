@@ -55,10 +55,8 @@ interface partyViewProps {
   togglePartyView: () => void;
 }
 
-const headers3 = {
-  "Content-Type": "application/json",
-  Origin: "https://wallet.keplr.app/",
-  Referer: "https://wallet.keplr.app/",
+const headers5 = {
+  accept: "application/json",
 };
 
 const partyList: Party[] = [
@@ -328,38 +326,52 @@ const Parties: React.FC<partyViewProps> = ({ partyView, togglePartyView }) => {
   useEffect(() => {
     axios
       .get<ValidatorResponse>(
-        "https://lcd-osmosis.keplr.app/cosmos/staking/v1beta1/validators?pagination.limit=1000",
-        { headers: headers3 }
+        "https://lcd-osmosis.imperator.co/cosmos/staking/v1beta1/validators?pagination.limit=500",
+        { headers: headers5 }
       )
       .then((res: AxiosResponse<ValidatorResponse>) => {
-        const uniqueIdentities = new Set();
+        const uniqueOperatorAddressIdentities = new Set();
 
         const uniqueValidators = res.data.validators.filter(
           (validator: Validatooor) => {
-            if (uniqueIdentities.has(validator.description.identity)) {
+            const combinedKey =
+              validator.operator_address + validator.description.identity;
+            if (uniqueOperatorAddressIdentities.has(combinedKey)) {
               return false;
             }
-            uniqueIdentities.add(validator.description.identity);
+            uniqueOperatorAddressIdentities.add(combinedKey);
             return true;
           }
         );
 
-        const sortedValidators = uniqueValidators.sort(
-          (a: Validatooor, b: Validatooor) =>
-            parseInt(b.tokens) - parseInt(a.tokens)
+        const uniqueValidatorsWithParsedTokens = uniqueValidators.map(
+          (validator: Validatooor) => {
+            return {
+              ...validator,
+              tokens: parseFloat(validator.tokens),
+            };
+          }
+        );
+
+        const sortedValidators = uniqueValidatorsWithParsedTokens.sort(
+          (a: Validatooor, b: Validatooor) => b.tokens - a.tokens
         );
         const top150Validators = sortedValidators.slice(0, 300);
         const combinedArray: ValidatorWithThumbnail[] = top150Validators.map(
           (item: Validatooor) => {
+            const identity = item.description.identity || item.operator_address;
             return {
               ...item,
-              thumbnail: thumbnails[item.description.identity],
+              tokens: item.tokens,
+              thumbnail: thumbnails[identity],
               containerId: "ROOT",
+              combinedKey: item.operator_address + item.description.identity,
             };
           }
         );
         setVjawns(combinedArray);
       })
+
       .catch((err: AxiosError) => console.log(err));
   }, []);
 
