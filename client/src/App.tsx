@@ -98,12 +98,6 @@ function App() {
 
   ChartJS.register(ArcElement, Title, Tooltip, Legend);
 
-  const headers3 = {
-    "Content-Type": "application/json",
-    Origin: "https://wallet.keplr.app/",
-    Referer: "https://wallet.keplr.app/",
-  };
-
   const headers5 = {
     accept: "application/json",
   };
