@@ -104,6 +104,10 @@ function App() {
     Referer: "https://wallet.keplr.app/",
   };
 
+  const headers5 = {
+    accept: "application/json",
+  };
+
   interface TokensResponse {
     pool: any;
     data: any;
@@ -116,8 +120,8 @@ function App() {
   useEffect(() => {
     axios
       .get<TokensResponse>(
-        "https://lcd-osmosis.keplr.app/cosmos/staking/v1beta1/pool",
-        { headers: headers3 }
+        "https://lcd-osmosis.imperator.co/cosmos/staking/v1beta1/pool",
+        { headers: headers5 }
       )
       .then((res: AxiosResponse<TokensResponse>) => {
         const bondedValue =
@@ -132,10 +136,11 @@ function App() {
   useEffect(() => {
     axios
       .get<ValidatorResponse>(
-        "https://lcd-osmosis.keplr.app/cosmos/staking/v1beta1/validators?pagination.limit=1000",
-        { headers: headers3 }
+        "https://lcd-osmosis.imperator.co/cosmos/staking/v1beta1/validators?pagination.limit=1000",
+        { headers: headers5 }
       )
       .then((res: AxiosResponse<ValidatorResponse>) => {
+        console.log(res.data.validators);
         const uniqueIdentities = new Set();
 
         const uniqueValidators = res.data.validators.filter(

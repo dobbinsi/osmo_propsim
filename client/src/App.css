@@ -180,6 +180,11 @@ body {
   height: 60px;
 }
 
+.imp-logo {
+  width: 150px;
+  height: 40px;
+}
+
 .footer-links {
   text-decoration: none;
   color: #fff;

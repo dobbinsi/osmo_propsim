@@ -1,6 +1,7 @@
 import React from "react";
 import flipjawn from "../logos/flipsidewhite.png";
 import keplr from "../logos/keplr.svg";
+import imperator from "../logos/Imperator.svg";
 
 const Footer: React.FC = () => {
   return (
@@ -36,13 +37,13 @@ const Footer: React.FC = () => {
           <img src={flipjawn} className="flipside-logo" alt="flipside" />{" "}
         </a>
         <a
-          href="https://www.keplr.app/"
+          href="https://imperator.co/"
           target="_blank"
           rel="noopener noreferrer"
           className="footer-links"
         >
           {" "}
-          <img src={keplr} className="keplr-logo" alt="keplr" />{" "}
+          <img src={imperator} className="imp-logo" alt="imperator" />{" "}
         </a>
       </div>
     </div>
