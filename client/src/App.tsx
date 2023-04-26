@@ -31,10 +31,14 @@ import DoughnutChart from "./components/DoughnutChart";
 import Footer from "./components/Footer";
 import Parties from "./components/Parties";
 
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 function App() {
   const handleInitialZoom = () => {
     (document.body.style as any).zoom = "80%";
   };
+  const [loading, setLoading] = useState(true);
 
   const [bondedTokens, setBondedTokens] = React.useState<number>(0);
   const [vJawns, setVjawns] = React.useState<ValidatorWithThumbnail[]>([]);
@@ -160,7 +164,7 @@ function App() {
         const sortedValidators = uniqueValidatorsWithParsedTokens.sort(
           (a: Validatooor, b: Validatooor) => b.tokens - a.tokens
         );
-        const top150Validators = sortedValidators.slice(0, 160);
+        const top150Validators = sortedValidators.slice(0, 155);
         const combinedArray: ValidatorWithThumbnail[] = top150Validators.map(
           (item: Validatooor) => {
             const identity = item.description.identity || item.operator_address;
@@ -175,6 +179,7 @@ function App() {
         );
         setVjawns(combinedArray);
         setDraggables(combinedArray);
+        setLoading(false);
       })
 
       .catch((err: AxiosError) => console.log(err));
@@ -306,22 +311,35 @@ function App() {
           <div className="top">
             <div className="list-house">
               <h2>Validators</h2>
-              <div className="valhouse">
-                <Droppable id="ROOT" className="rooty">
-                  {draggables
-                    .filter((draggable) => draggable.containerId === "ROOT")
-                    .map((draggable) => (
-                      <Draggable
-                        key={draggable.combinedKey}
-                        id={draggable.combinedKey}
-                        name={draggable.description.moniker}
-                        logo={draggable.thumbnail}
-                        power={draggable.tokens}
-                        {...draggable}
-                      />
-                    ))}
-                </Droppable>
-              </div>
+              {loading ? (
+                <Skeleton
+                  count={3}
+                  height={70}
+                  width="100%"
+                  borderRadius={15}
+                  baseColor="#28274f"
+                  highlightColor="#404077"
+                  duration={2.5}
+                  className="skele"
+                />
+              ) : (
+                <div className="valhouse">
+                  <Droppable id="ROOT" className="rooty">
+                    {draggables
+                      .filter((draggable) => draggable.containerId === "ROOT")
+                      .map((draggable) => (
+                        <Draggable
+                          key={draggable.combinedKey}
+                          id={draggable.combinedKey}
+                          name={draggable.description.moniker}
+                          logo={draggable.thumbnail}
+                          power={draggable.tokens}
+                          {...draggable}
+                        />
+                      ))}
+                  </Droppable>
+                </div>
+              )}
             </div>
           </div>
           <div className="bottom">
