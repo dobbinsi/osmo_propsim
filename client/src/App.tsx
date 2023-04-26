@@ -3,7 +3,7 @@ import osmo from "./logos/osmologo.svg";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { Analytics } from "@vercel/analytics/react";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ChangeEvent } from "react";
 import { DragStartEvent } from "@dnd-kit/core";
 import {
   DndContext,
@@ -34,6 +34,9 @@ import Parties from "./components/Parties";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 function App() {
   const handleInitialZoom = () => {
     (document.body.style as any).zoom = "80%";
@@ -60,6 +63,29 @@ function App() {
   const turnout = Math.min((totalVotesNum / bondedTokens) * 100, 100) || 0.0;
 
   const [partyView, setPartyView] = useState(false);
+
+  const [searchValue, setSearchValue] = useState<string>("");
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
+  const handleSearch = () => {
+    if (searchValue.trim() !== "") {
+      const found = window.find(searchValue);
+
+      if (found) {
+        const selection = window.getSelection();
+        if (selection) {
+          const range = selection.getRangeAt(0);
+          const node = range.startContainer.parentNode;
+          if (node instanceof HTMLElement) {
+            node.scrollIntoView({ behavior: "smooth", inline: "center" });
+          }
+        }
+      }
+    }
+  };
 
   const partChartData = {
     labels: ["Yes", "No", "No With Veto", "Abstain"],
@@ -310,7 +336,34 @@ function App() {
         <div className="main">
           <div className="top">
             <div className="list-house">
-              <h2>Validators</h2>
+              <div className="val-search">
+                <h2>Validators</h2>
+                <div>
+                  <form
+                    onSubmit={(event) => {
+                      event.preventDefault();
+                      handleSearch();
+                    }}
+                  >
+                    <div className="searchbar">
+                      <input
+                        type="text"
+                        value={searchValue}
+                        onChange={(event) => setSearchValue(event.target.value)}
+                        placeholder="Find validator..."
+                      />
+                      <div className="searchicon">
+                        <FontAwesomeIcon
+                          icon={faMagnifyingGlass}
+                          color="#025dff"
+                          size="lg"
+                          onClick={handleSearch}
+                        />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
               {loading ? (
                 <Skeleton
                   count={3}
