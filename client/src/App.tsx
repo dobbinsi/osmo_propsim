@@ -372,7 +372,7 @@ function App() {
                   borderRadius={15}
                   baseColor="#28274f"
                   highlightColor="#404077"
-                  duration={2.5}
+                  duration={2}
                   className="skele"
                 />
               ) : (

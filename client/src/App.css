@@ -591,7 +591,8 @@ body {
   }
 
   .vnames {
-    display: none;
+    font-size: 0.001px;
+    opacity: 0.01;
   }
 }
 
@@ -713,7 +714,8 @@ body {
   }
 
   .vnames {
-    display: none;
+    font-size: 0.001px;
+    opacity: 0.01;
   }
   .vinfo {
     display: none;
