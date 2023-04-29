@@ -591,8 +591,13 @@ body {
   }
 
   .vnames {
-    font-size: 0.001px;
-    opacity: 0.01;
+    display: none;
+  }
+  .searchbar input {
+    display: none;
+  }
+  .searchicon .searchglass {
+    display: none;
   }
 }
 
@@ -714,10 +719,15 @@ body {
   }
 
   .vnames {
-    font-size: 0.001px;
-    opacity: 0.01;
+    display: none;
   }
   .vinfo {
+    display: none;
+  }
+  .searchbar input {
+    display: none;
+  }
+  .searchicon .searchglass {
     display: none;
   }
 }

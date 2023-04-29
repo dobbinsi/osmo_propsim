@@ -358,6 +358,7 @@ function App() {
                           color="#025dff"
                           size="lg"
                           onClick={handleSearch}
+                          className="searchglass"
                         />
                       </div>
                     </div>
