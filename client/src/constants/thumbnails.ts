@@ -413,4 +413,6 @@ export const thumbnails: { [identity: string]: string } = {
     "https://www.mintscan.io/_next/static/image/assets/Validator/validator_none.983ad4f48d419359dce599901ebb054c.svg",
   osmovaloper1gjtvly9lel6zskvwtvlg5vhwpu9c9wawfgfyrq:
     "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1gjtvly9lel6zskvwtvlg5vhwpu9c9wawfgfyrq.png",
+  osmovaloper14lzvt4gdwh2q4ymyjqma0p4j4aykpn92l4warr:
+    "https://www.mintscan.io/_next/static/image/assets/Validator/validator_none.983ad4f48d419359dce599901ebb054c.svg",
 };
