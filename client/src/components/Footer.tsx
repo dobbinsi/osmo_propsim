@@ -6,15 +6,7 @@ const Footer: React.FC = () => {
   return (
     <div className="footer">
       <h2>
-        <a
-          href="https://twitter.com/web3_analyst"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="footer-links"
-        >
-          Jess the Analyst{" "}
-        </a>
-        &{" "}
+        Built by{" "}
         <a
           href="https://twitter.com/dawbyinz"
           target="_blank"
