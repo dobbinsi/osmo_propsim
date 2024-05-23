@@ -205,6 +205,7 @@ function App() {
         );
         setVjawns(combinedArray);
         setDraggables(combinedArray);
+        console.log(combinedArray);
         setLoading(false);
       })
 
@@ -324,13 +325,13 @@ function App() {
             >
               Prop Simulator
             </h2>
-            <span className="tab-divider">|</span>
+            {/* <span className="tab-divider">|</span>
             <h2
               className={`tab ${partyView ? "active" : ""}`}
               onClick={() => setPartyView(true)}
             >
               Voting Trends
-            </h2>
+            </h2> */}
           </div>
         </div>
         <div className="main">

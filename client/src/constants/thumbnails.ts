@@ -87,21 +87,21 @@ export const thumbnails: { [identity: string]: string } = {
   "5992A6D423A406D6":
     "https://s3.amazonaws.com/keybase_processed_uploads/9d337c16fa39ef101c37131dbec2cf05_360_360.jpg",
   E2A5772A111FD119:
-    "https://s3.amazonaws.com/keybase_processed_uploads/a1413845d3aa5e3fec212768c3a87c05_360_360.jpg",
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1q4mlwtw3ncve72na65xacck557wcknc8j0lmke.png",
   "8E92184569CD8E2D":
     "https://s3.amazonaws.com/keybase_processed_uploads/eaaad4b2c4e30990a58320de74695d05_360_360.jpg",
   "0A6AF02D1557E5B4":
     "https://s3.amazonaws.com/keybase_processed_uploads/d56ce0bdda17f73d4aa895d1626e2505_360_360.jpg",
   "9AE70F9E3EDA8956":
-    "https://s3.amazonaws.com/keybase_processed_uploads/a88e5e584409d84bca5d8fedcbf84b05_360_360.jpg",
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1h2c47vd943scjlfum6yc5frvu2l279lwjep5d6.png",
   "5F1D6AC7EA588676":
-    "https://s3.amazonaws.com/keybase_processed_uploads/febce068a5aebf84e640079467e88e05_360_360.jpg",
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1u6jr0pztvsjpvx77rfzmtw49xwzu9kas05lk04.png",
   "6386E8C1B6217AC2":
     "https://s3.amazonaws.com/keybase_processed_uploads/1dbbcb3590eb95b16521c13a42921605_360_360.jpg",
   "35892AC552B8A0A8":
     "https://s3.amazonaws.com/keybase_processed_uploads/0295f24a5694e2af5e51cb391705ed05_360_360.jpg",
   "165F85FC0194320D":
-    "https://s3.amazonaws.com/keybase_processed_uploads/e7aca2c60e1b658db8cc8f175ce9aa05_360_360.jpg",
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1y0us8xvsvfvqkk9c6nt5cfyu5au5tww24nrlnx.png",
   "3999DA33020A4DBC":
     "https://s3.amazonaws.com/keybase_processed_uploads/c1bfe4c1d4f6c8f8d66baa152d50e805_360_360.jpg",
   "6783E9F948541962":
@@ -109,9 +109,9 @@ export const thumbnails: { [identity: string]: string } = {
   FA260EE7A0113432:
     "https://s3.amazonaws.com/keybase_processed_uploads/af106005e2439232a6f19bcb75c52605_360_360.jpg",
   AD3CDBC91802F94A:
-    "https://s3.amazonaws.com/keybase_processed_uploads/5bea053297f0462b29a7bc84fbb00905_360_360.jpg",
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1kgddca7qj96z0qcxr2c45z73cfl0c75pf37k8l.png",
   F87ADDB700C0CC94:
-    "https://s3.amazonaws.com/keybase_processed_uploads/4c94c8374d204c54f437ad9d42f43d05_360_360.jpg",
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1glmy88g0uf6vmw29pyxu3yq0pxpjqtzqr5e57n.png",
   "1ECD13F96C55C0CD":
     "https://s3.amazonaws.com/keybase_processed_uploads/a779c9e7185eb63ccbaec307c9cf1f05_360_360.jpg",
   "679281030DD1209A":
@@ -132,8 +132,7 @@ export const thumbnails: { [identity: string]: string } = {
     "https://s3.amazonaws.com/keybase_processed_uploads/aa00b591b6e2d9386932c24e89662a05_360_360.jpg",
   C7449E61C271EAA8:
     "https://s3.amazonaws.com/keybase_processed_uploads/b30ff45dd938ae77c602393299869605_360_360.jpg",
-  C92C6965D89F07A3:
-    "https://s3.amazonaws.com/keybase_processed_uploads/b16bcadbedcfc61763187a5b2657c205_360_360.jpg",
+  C92C6965D89F07A3: valFallback,
   "4062E136FF6C8968":
     "https://s3.amazonaws.com/keybase_processed_uploads/1b8734001b87673cb18080a048a90105_360_360.jpg",
   "0B5217ACAE18F4C9":
@@ -153,7 +152,7 @@ export const thumbnails: { [identity: string]: string } = {
   "913CE38447233C01":
     "https://s3.amazonaws.com/keybase_processed_uploads/61d84fdd3a5969a1f8d832ca8f536a05_360_360.jpg",
   "5A8AB49CF5CAAF3C":
-    "https://s3.amazonaws.com/keybase_processed_uploads/a0696b953ceca5ca4fa36f3b00e91705_360_360.jpg",
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper16s96n9k9zztdgjy8q4qcxp4hn7ww98qk5wjn0s.png",
   "609F83752053AD57":
     "https://s3.amazonaws.com/keybase_processed_uploads/3074ffa8484e5d89597d53356bf9d905_360_360.jpg",
   FD3702E722561505:
@@ -161,7 +160,7 @@ export const thumbnails: { [identity: string]: string } = {
   CC806AFFDB2EE85A:
     "https://s3.amazonaws.com/keybase_processed_uploads/a4e90eb76d45735341e07f5314766105_360_360.jpg",
   "216E0EE1BA80B5F8":
-    "https://s3.amazonaws.com/keybase_processed_uploads/c6f6faf5d7039892c4140877189ade05_360_360.jpg",
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper14amduhjazqhwtkhm6kutdcy4ux5zazf5k803tq.png",
   "87D9921253A2A9EB":
     "https://www.a41.io/_next/image?url=https%3A%2F%2Fa41-web-static.s3.ap-northeast-2.amazonaws.com%2Fpublic%2Fimgs%2Fa41_logo_steel.png&w=1920&q=75",
   FEF740F1760E1B56:
@@ -210,8 +209,7 @@ export const thumbnails: { [identity: string]: string } = {
     "https://s3.amazonaws.com/keybase_processed_uploads/7422803e583735db284898cafd8e8605_360_360.jpg",
   E73AFD8985423B14:
     "https://s3.amazonaws.com/keybase_processed_uploads/128efcca8fffd52fed0cae7aa9f25d05_360_360.jpg",
-  D41C757E7F05563FC04351B41E09665F32FE7217:
-    "https://s3.amazonaws.com/keybase_processed_uploads/69f83d1adfdfcc061bad5e018d600905_360_360.jpg",
+  D41C757E7F05563FC04351B41E09665F32FE7217: valFallback,
   "6696D60A73064DFE":
     "https://s3.amazonaws.com/keybase_processed_uploads/1c6f791ce6df2b7b14ea1d0447ab1c05_360_360.jpg",
   "125E6FE219457130":
@@ -224,8 +222,7 @@ export const thumbnails: { [identity: string]: string } = {
     "https://s3.amazonaws.com/keybase_processed_uploads/3476fe9f5565f97c1169474fd0b6f505_360_360.jpg",
   "536585A71903C50F":
     "https://s3.amazonaws.com/keybase_processed_uploads/3f9db55d73c7509bc05181b655997405_360_360.jpg",
-  "44937E3DA9AA699A":
-    "https://wallet.keplr.app/_next/image?url=https%3A%2F%2Fs3.amazonaws.com%2Fkeybase_processed_uploads%2F9ee1518187b9d4350b3212dd5292fe05_360_360.jpg&w=64&q=75",
+  "44937E3DA9AA699A": valFallback,
   "70C162B0473634FD":
     "https://s3.amazonaws.com/keybase_processed_uploads/7457583aa6c1316335719ec6cd1ba905_360_360.jpg",
   "1326A75B9148A214":
@@ -414,4 +411,64 @@ export const thumbnails: { [identity: string]: string } = {
   AB3DA9B8891D4F85:
     "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper10w06wvmdd4xn7hr76gzrv570f7q5uweem5jcd7.png",
   "7C7B7DADFECA3F7F": valFallback,
+  osmovaloper14n8pf9uxhuyxqnqryvjdr8g68na98wn5amq3e5:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper14n8pf9uxhuyxqnqryvjdr8g68na98wn5amq3e5.png",
+  osmovaloper13t30u88ehaq3dlp5uzkxmn9u98nrskjyrutvvs: valFallback,
+  osmovaloper1h2c47vd943scjlfum6yc5frvu2l279lwjep5d6:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1h2c47vd943scjlfum6yc5frvu2l279lwjep5d6.png",
+  osmovaloper1glmy88g0uf6vmw29pyxu3yq0pxpjqtzqr5e57n:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1glmy88g0uf6vmw29pyxu3yq0pxpjqtzqr5e57n.png",
+  osmovaloper1u6jr0pztvsjpvx77rfzmtw49xwzu9kas05lk04:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1u6jr0pztvsjpvx77rfzmtw49xwzu9kas05lk04.png",
+  osmovaloper1r2u5q6t6w0wssrk6l66n3t2q3dw2uqny4gj2e3:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1r2u5q6t6w0wssrk6l66n3t2q3dw2uqny4gj2e3.png",
+  osmovaloper1y0us8xvsvfvqkk9c6nt5cfyu5au5tww24nrlnx:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1y0us8xvsvfvqkk9c6nt5cfyu5au5tww24nrlnx.png",
+  osmovaloper1q4mlwtw3ncve72na65xacck557wcknc8j0lmke:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1q4mlwtw3ncve72na65xacck557wcknc8j0lmke.png",
+  osmovaloper14amduhjazqhwtkhm6kutdcy4ux5zazf5k803tq:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper14amduhjazqhwtkhm6kutdcy4ux5zazf5k803tq.png",
+  osmovaloper14fpkylq7y7eenakv0h56yu8jh922p9uvyeugty: valFallback,
+  osmovaloper1md9f5524vtmrn64lyv2pdfn7cnkjkklf44vtjz:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1md9f5524vtmrn64lyv2pdfn7cnkjkklf44vtjz.png",
+  osmovaloper13tk45jkxgf7w0nxquup3suwaz2tx483xe832ge:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper13tk45jkxgf7w0nxquup3suwaz2tx483xe832ge.png",
+  osmovaloper1wgmdcxzp49vjgrqusgcagq6qefk4mtjv5c0k7q: valFallback,
+  osmovaloper1nna7k5lywn99cd63elcfqm6p8c5c4qcu6ex2gp: valFallback,
+  osmovaloper1tf7wjthwt9mgywqvjdkj974rp5awzzm43ddhlp: valFallback,
+  osmovaloper1kgddca7qj96z0qcxr2c45z73cfl0c75pf37k8l:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1kgddca7qj96z0qcxr2c45z73cfl0c75pf37k8l.png",
+  osmovaloper1xk23a255qm4kn6gdezr6jm7zmupn23t3pqjjn6:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1xk23a255qm4kn6gdezr6jm7zmupn23t3pqjjn6.png",
+  osmovaloper17r0cp9zrtkvzlz7a2r09gmdxwqfyje98gfer6u: valFallback,
+  "3CE640138108BAAE":
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper14n8pf9uxhuyxqnqryvjdr8g68na98wn5amq3e5.png",
+  "158DA6C7FCFB7BD23988D9C0D0D8B80F1C5C70B5":
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1r2u5q6t6w0wssrk6l66n3t2q3dw2uqny4gj2e3.png",
+  "1BEC0B582AEDB0EC": valFallback,
+  C99B3A6836BF0CB8:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1md9f5524vtmrn64lyv2pdfn7cnkjkklf44vtjz.png",
+  "97EE2A4FADFB1524":
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper13tk45jkxgf7w0nxquup3suwaz2tx483xe832ge.png",
+  EF5AC70C00BECEDC: valFallback,
+  E072BD129BFECFB1: valFallback,
+  A3870C87F2634CB5:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1tf7wjthwt9mgywqvjdkj974rp5awzzm43ddhlp.png",
+  "6D5F63F1DDCF0404":
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1xk23a255qm4kn6gdezr6jm7zmupn23t3pqjjn6.png",
+  "496198D003A5A717": valFallback,
+  "5307DE5B18FEA0AA":
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper1u2wsa88eh738mk35a3cncgu7lc6cqf74jdl50x.png",
+  A91AFDD35644AC49: valFallback,
+  A5C785745A5F9D3E: valFallback,
+  CE2C5C02D96391AA:
+    "https://raw.githubusercontent.com/cosmostation/chainlist/master/chain/osmosis/moniker/osmovaloper135p8cjwa3hnnnksjxchda0a6339z9zm7cudyxn.png",
+  FED16ABFC532209B: valFallback,
+  DE50D46AAC2A243C: valFallback,
+  AC3C2AB4800FEC24: valFallback,
+  "93EEE9A0E6827ECA": valFallback,
+  osmovaloper1f7jtv9sd3g9jay64zrydfqh7l3eqdzgs289m8u: valFallback,
+  "6C1013A10D92CB91": valFallback,
+  "2AB1C2C6BEADE9F0": valFallback,
+  D09E1D871392C163: valFallback,
 };
